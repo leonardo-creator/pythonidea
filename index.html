@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualização de Dados</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Upload de Imagens</title>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1>Visualização de Dados</h1>
-        {{ table|safe }}
-    </div>
+    <h1>Upload de Imagens</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Enviar</button>
+    </form>
 </body>
 </html>
