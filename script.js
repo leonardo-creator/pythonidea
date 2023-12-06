@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("imageInput");
     const metadataList = document.getElementById("metadataList");
     const processButton = document.getElementById("processButton");
+    const statusRadios = document.getElementsByName("status");
+    const descriptionInput = document.getElementById("descriptionInput");
 
     let imageMetadataList = [];
 
@@ -19,6 +21,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     processButton.addEventListener("click", function () {
+        const status = getStatusValue();
+        const description = descriptionInput.value;
+
+        imageMetadataList.forEach(metadata => {
+            metadata.status = status;
+            metadata.description = description;
+        });
+
         const jsonMetadata = JSON.stringify(imageMetadataList, null, 2);
         console.log(jsonMetadata);
         alert("Verifique o console para ver o JSON gerado.");
@@ -42,10 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const metadataDiv = document.createElement("div");
         metadataDiv.style.marginLeft = "10px";
 
-        // Exibir as propriedades e o botão de status
+        // Exibir as propriedades e os inputs de rádio e texto
         metadataDiv.innerHTML = `<strong>${metadata.name}:</strong>
             <br>
             <strong>Status:</strong> ${metadata.status}
+            <br>
+            <strong>Descrição:</strong> ${metadata.description || "N/A"}
             <br>
             <strong>File Size:</strong> ${metadata["File Size"]}
             <br>
@@ -57,18 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
             <br>
             <strong>Longitude:</strong> ${metadata.Longitude}`;
 
-        const statusButton = document.createElement("button");
-        statusButton.textContent = "Concluir";
-        statusButton.addEventListener("click", function () {
-            // Alterar o status quando o botão é clicado
-            metadata.status = "Concluído";
-            displayMetadata(metadata);
-        });
-
-        metadataDiv.appendChild(statusButton);
-        listItem.appendChild(metadataDiv);
-
         metadataList.appendChild(listItem);
+        listItem.appendChild(metadataDiv);
     }
 
     function readImageMetadata(file, index) {
@@ -85,7 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     const metadata = {
                         name: file.name,
-                        status: "Pendente", // Status pré-configurado
+                        status: getStatusValue(),
+                        description: descriptionInput.value,
                         "File Size": `${(file.size / 1024).toFixed(2)} KB`,
                         "File Type": file.type,
                         "Last Modified": file.lastModifiedDate.toLocaleDateString(),
@@ -95,20 +98,4 @@ document.addEventListener("DOMContentLoaded", function () {
                     };
 
                     imageMetadataList[index] = metadata;
-                    displayMetadata(metadata);
-                });
-            };
-        };
-
-        reader.readAsDataURL(file);
-    }
-
-    function convertDMSToDD(coord) {
-        const degrees = coord[0];
-        const minutes = coord[1];
-        const seconds = coord[2];
-
-        const dd = degrees + minutes / 60 + seconds / (60 * 60);
-        return dd;
-    }
-});
+                
