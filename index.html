@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload de Imagens</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Image Metadata Viewer</title>
 </head>
 <body>
-    <h1>Upload de Imagens</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <button type="submit">Enviar</button>
-    </form>
+    <div class="container">
+        <h1>Image Metadata Viewer</h1>
+        <input type="file" id="imageInput" accept="image/*" />
+        <ul id="metadataList"></ul>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
