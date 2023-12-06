@@ -40,21 +40,29 @@ document.addEventListener("DOMContentLoaded", function () {
             img.src = e.target.result;
 
             img.onload = function () {
-                // Use a função integrada para obter dados de geolocalização
-                navigator.geolocation.getCurrentPosition(
-                    function (position) {
-                        metadata["Latitude"] = position.coords.latitude;
-                        metadata["Longitude"] = position.coords.longitude;
-                        displayMetadata(metadata);
-                    },
-                    function (error) {
-                        console.error("Error getting geolocation:", error.message);
-                        displayMetadata(metadata);
+                EXIF.getData(img, function () {
+                    const lat = EXIF.getTag(this, "GPSLatitude");
+                    const lon = EXIF.getTag(this, "GPSLongitude");
+
+                    if (lat && lon) {
+                        metadata["Latitude"] = convertDMSToDD(lat);
+                        metadata["Longitude"] = convertDMSToDD(lon);
                     }
-                );
+
+                    displayMetadata(metadata);
+                });
             };
         };
 
         reader.readAsDataURL(file);
+    }
+
+    function convertDMSToDD(coord) {
+        const degrees = coord[0];
+        const minutes = coord[1];
+        const seconds = coord[2];
+
+        const dd = degrees + minutes / 60 + seconds / (60 * 60);
+        return dd;
     }
 });
