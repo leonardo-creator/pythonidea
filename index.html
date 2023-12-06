@@ -10,6 +10,16 @@
     <div class="container">
         <h1>Image Metadata Viewer</h1>
         <input type="file" id="imageInput" accept="image/*" multiple />
+        <div>
+            <label>Status:</label>
+            <input type="radio" name="status" value="Pendente" checked /> Pendente
+            <input type="radio" name="status" value="Concluído" /> Concluído
+            <input type="radio" name="status" value="Atrasado" /> Atrasado
+        </div>
+        <div>
+            <label>Descrição:</label>
+            <input type="text" id="descriptionInput" />
+        </div>
         <button id="processButton">Processar Fotos</button>
         <ul id="metadataList"></ul>
     </div>
