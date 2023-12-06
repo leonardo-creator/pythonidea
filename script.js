@@ -91,4 +91,52 @@ document.addEventListener("DOMContentLoaded", function () {
     function readImageMetadata(file, index) {
         const reader = new FileReader();
 
-        reader.onload = function
+        reader.onload = function (e) {
+            const img = new Image();
+            img.src = e.target.result;
+
+            img.onload = function () {
+                EXIF.getData(img, function () {
+                    const lat = EXIF.getTag(this, "GPSLatitude");
+                    const lon = EXIF.getTag(this, "GPSLongitude");
+
+                    const metadata = {
+                        index: index,
+                        name: file.name,
+                        status: getStatusValue(index),
+                        "File Size": `${(file.size / 1024).toFixed(2)} KB`,
+                        "File Type": file.type,
+                        "Last Modified": file.lastModifiedDate.toLocaleDateString(),
+                        Latitude: lat ? convertDMSToDD(lat) : "N/A",
+                        Longitude: lon ? convertDMSToDD(lon) : "N/A",
+                        thumbnail: e.target.result,
+                    };
+
+                    imageMetadataList[index] = metadata;
+                    displayMetadata(metadata);
+                });
+            };
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    function convertDMSToDD(coord) {
+        const degrees = coord[0];
+        const minutes = coord[1];
+        const seconds = coord[2];
+
+        const dd = degrees + minutes / 60 + seconds / (60 * 60);
+        return dd;
+    }
+
+    function getStatusValue(index) {
+        const statusRadios = document.getElementsByName(`status-${index}`);
+        for (const radio of statusRadios) {
+            if (radio.checked) {
+                return radio.value;
+            }
+        }
+        return "Pendente"; // Valor padrão caso nenhum rádio esteja marcado
+    }
+});
