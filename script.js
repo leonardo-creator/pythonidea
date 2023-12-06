@@ -2,8 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("imageInput");
     const metadataList = document.getElementById("metadataList");
     const processButton = document.getElementById("processButton");
-    const statusRadios = document.getElementsByName("status");
-    const descriptionInput = document.getElementById("descriptionInput");
+    const statusInputs = document.getElementById("statusInputs");
 
     let imageMetadataList = [];
 
@@ -13,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (files.length > 0) {
             clearMetadataList();
             imageMetadataList = [];
+            createStatusInputs(files.length);
 
             Array.from(files).forEach((file, index) => {
                 readImageMetadata(file, index);
@@ -21,14 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     processButton.addEventListener("click", function () {
-        const status = getStatusValue();
-        const description = descriptionInput.value;
-
-        imageMetadataList.forEach(metadata => {
-            metadata.status = status;
-            metadata.description = description;
-        });
-
         const jsonMetadata = JSON.stringify(imageMetadataList, null, 2);
         console.log(jsonMetadata);
         alert("Verifique o console para ver o JSON gerado.");
@@ -36,6 +28,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function clearMetadataList() {
         metadataList.innerHTML = "";
+    }
+
+    function createStatusInputs(count) {
+        statusInputs.innerHTML = "";
+
+        for (let i = 0; i < count; i++) {
+            const statusGroup = document.createElement("div");
+            statusGroup.innerHTML = `
+                <label for="status-${i}">Status da Foto ${i + 1}:</label>
+                <input type="radio" name="status-${i}" id="status-${i}-pendente" value="Pendente" checked /> Pendente
+                <input type="radio" name="status-${i}" id="status-${i}-concluido" value="Concluído" /> Concluído
+                <input type="radio" name="status-${i}" id="status-${i}-atrasado" value="Atrasado" /> Atrasado
+            `;
+            statusInputs.appendChild(statusGroup);
+        }
     }
 
     function displayMetadata(metadata) {
@@ -52,12 +59,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const metadataDiv = document.createElement("div");
         metadataDiv.style.marginLeft = "10px";
 
-        // Exibir as propriedades e os inputs de rádio e texto
+        // Exibir as propriedades, o status e o botão de concluir
         metadataDiv.innerHTML = `<strong>${metadata.name}:</strong>
             <br>
             <strong>Status:</strong> ${metadata.status}
-            <br>
-            <strong>Descrição:</strong> ${metadata.description || "N/A"}
             <br>
             <strong>File Size:</strong> ${metadata["File Size"]}
             <br>
@@ -69,33 +74,21 @@ document.addEventListener("DOMContentLoaded", function () {
             <br>
             <strong>Longitude:</strong> ${metadata.Longitude}`;
 
-        metadataList.appendChild(listItem);
+        const statusButton = document.createElement("button");
+        statusButton.textContent = "Concluir";
+        statusButton.addEventListener("click", function () {
+            // Alterar o status quando o botão é clicado
+            metadata.status = getStatusValue(metadata.index);
+            displayMetadata(metadata);
+        });
+
+        metadataDiv.appendChild(statusButton);
         listItem.appendChild(metadataDiv);
+
+        metadataList.appendChild(listItem);
     }
 
     function readImageMetadata(file, index) {
         const reader = new FileReader();
 
-        reader.onload = function (e) {
-            const img = new Image();
-            img.src = e.target.result;
-
-            img.onload = function () {
-                EXIF.getData(img, function () {
-                    const lat = EXIF.getTag(this, "GPSLatitude");
-                    const lon = EXIF.getTag(this, "GPSLongitude");
-
-                    const metadata = {
-                        name: file.name,
-                        status: getStatusValue(),
-                        description: descriptionInput.value,
-                        "File Size": `${(file.size / 1024).toFixed(2)} KB`,
-                        "File Type": file.type,
-                        "Last Modified": file.lastModifiedDate.toLocaleDateString(),
-                        Latitude: lat ? convertDMSToDD(lat) : "N/A",
-                        Longitude: lon ? convertDMSToDD(lon) : "N/A",
-                        thumbnail: e.target.result,
-                    };
-
-                    imageMetadataList[index] = metadata;
-                
+        reader.onload = function
