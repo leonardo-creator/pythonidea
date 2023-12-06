@@ -40,35 +40,21 @@ document.addEventListener("DOMContentLoaded", function () {
             img.src = e.target.result;
 
             img.onload = function () {
-                const lat = getExifData(img, "GPSLatitude");
-                const lon = getExifData(img, "GPSLongitude");
-
-                if (lat && lon) {
-                    metadata["Latitude"] = lat;
-                    metadata["Longitude"] = lon;
-                }
-
-                displayMetadata(metadata);
+                // Use a função integrada para obter dados de geolocalização
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        metadata["Latitude"] = position.coords.latitude;
+                        metadata["Longitude"] = position.coords.longitude;
+                        displayMetadata(metadata);
+                    },
+                    function (error) {
+                        console.error("Error getting geolocation:", error.message);
+                        displayMetadata(metadata);
+                    }
+                );
             };
         };
 
         reader.readAsDataURL(file);
-    }
-
-    function getExifData(img, tag) {
-        const exif = EXIF.readFromBinaryFile(base64ToArrayBuffer(img.src));
-        return exif && exif[tag] ? exif[tag] : "N/A";
-    }
-
-    function base64ToArrayBuffer(base64) {
-        const binaryString = window.atob(base64.split(",")[1]);
-        const length = binaryString.length;
-        const bytes = new Uint8Array(length);
-
-        for (let i = 0; i < length; i++) {
-            bytes[i] = binaryString.charCodeAt(i);
-        }
-
-        return bytes.buffer;
     }
 });
