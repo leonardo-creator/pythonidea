@@ -31,7 +31,43 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayMetadata(metadata) {
         const listItem = document.createElement("li");
         listItem.className = "metadata-item";
-        listItem.innerHTML = `<strong>${metadata.name}:</strong> ${JSON.stringify(metadata, null, 2)}`;
+
+        // Exibir a foto ao lado das propriedades
+        const imgElement = document.createElement("img");
+        imgElement.src = metadata.thumbnail;
+        imgElement.style.maxWidth = "100px";
+        imgElement.style.maxHeight = "100px";
+        listItem.appendChild(imgElement);
+
+        const metadataDiv = document.createElement("div");
+        metadataDiv.style.marginLeft = "10px";
+
+        // Exibir as propriedades e o botão de status
+        metadataDiv.innerHTML = `<strong>${metadata.name}:</strong>
+            <br>
+            <strong>Status:</strong> ${metadata.status}
+            <br>
+            <strong>File Size:</strong> ${metadata["File Size"]}
+            <br>
+            <strong>File Type:</strong> ${metadata["File Type"]}
+            <br>
+            <strong>Last Modified:</strong> ${metadata["Last Modified"]}
+            <br>
+            <strong>Latitude:</strong> ${metadata.Latitude}
+            <br>
+            <strong>Longitude:</strong> ${metadata.Longitude}`;
+
+        const statusButton = document.createElement("button");
+        statusButton.textContent = "Concluir";
+        statusButton.addEventListener("click", function () {
+            // Alterar o status quando o botão é clicado
+            metadata.status = "Concluído";
+            displayMetadata(metadata);
+        });
+
+        metadataDiv.appendChild(statusButton);
+        listItem.appendChild(metadataDiv);
+
         metadataList.appendChild(listItem);
     }
 
@@ -49,11 +85,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     const metadata = {
                         name: file.name,
+                        status: "Pendente", // Status pré-configurado
                         "File Size": `${(file.size / 1024).toFixed(2)} KB`,
                         "File Type": file.type,
                         "Last Modified": file.lastModifiedDate.toLocaleDateString(),
                         Latitude: lat ? convertDMSToDD(lat) : "N/A",
-                        Longitude: lon ? convertDMSToDD(lon) : "N/A"
+                        Longitude: lon ? convertDMSToDD(lon) : "N/A",
+                        thumbnail: e.target.result,
                     };
 
                     imageMetadataList[index] = metadata;
