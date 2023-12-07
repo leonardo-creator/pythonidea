@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Image Metadata Viewer</title>
+    <title>Upload de Imagens</title>
+    <link rel="stylesheet" href="styles.css"> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.5/proj4.js"></script>
+    <script src="https://unpkg.com/html-docx-js/dist/html-docx.js"></script>
+
+
+
 </head>
 <body>
-    <div class="container">
-        <h1>Image Metadata Viewer</h1>
-        <input type="file" id="imageInput" accept="image/*" multiple />
-        <div id="statusInputs"></div>
-        <button id="processButton">Processar Fotos</button>
-        <ul id="metadataList"></ul>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
+
+    <input type="file" id="imageInput" multiple>
+    <ul id="metadataList"></ul>
+    <div id="utmCoordinates"></div>
+
     <script src="script.js"></script>
+
+    <button id="concluirButton">Concluir</button>
+
+
 </body>
 </html>
