@@ -40,8 +40,7 @@ ul {
 }
 
 .metadata-item img {
-    width: 150px; /* Aumentando o tamanho das imagens */
-    height: 150px; /* Ajuste conforme necessário */
+    width: 30vw; 
     margin-right: 20px;
     border-radius: 5px;
     object-fit: cover; /* Garante que a imagem se ajuste ao espaço */
@@ -52,7 +51,7 @@ ul {
 }
 
 .metadata-info strong {
-    color: #F3593B; /* Cor para destaques */
+    color: #110043; /* Cor para destaques */
     margin-right: 5px;
 }
 
