@@ -61,3 +61,26 @@ select, input[type="text"] {
     border-radius: 3px;
     border: 1px solid #ccc;
 }
+
+/* Estilo para botões e botões personalizados */
+.custom-button, button {
+    background-color: #007bff; /* Cor de fundo azul */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.custom-button:hover, button:hover {
+    background-color: #0056b3; /* Cor de hover azul mais escuro */
+}
+
+button {
+    display: inline-block; /* Ajuste para alinhar corretamente os botões */
+}
+
+/* Estilos adicionais conforme necessário */
