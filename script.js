@@ -285,18 +285,14 @@ document.addEventListener("DOMContentLoaded", function () {
 }
 
 
- document.getElementById('generate-kml').addEventListener('click', processFiles);
+document.getElementById('generate-kml').addEventListener('click', processFiles);
 
 function processFiles() {
-    const jsonInput = imageMetadataList;
+    // Supondo que imageMetadataList seja um array de objetos JSON
+    const jsonData = imageMetadataList;
 
-    if (jsonInput.files.length > 0) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const jsonData = JSON.parse(e.target.result);
-            processJsonData(jsonData);
-        };
-        reader.readAsText(jsonInput.files[0]);
+    if (jsonData && jsonData.length > 0) {
+        processJsonData(jsonData);
     } else {
         alert('Por favor, carregue um arquivo JSON.');
     }
@@ -313,7 +309,7 @@ function processJsonData(jsonData) {
 
     kmlContent += '</Document></kml>';
 
-    // Aqui você pode, por exemplo, criar um link para download do KML
+    // Criar um link para download do KML
     download('incidentes.kml', kmlContent);
 }
 
@@ -338,5 +334,6 @@ function download(filename, text) {
 
     document.body.removeChild(element);
 }
+
     
 });
