@@ -214,58 +214,60 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
 
-    function concluir() {
-        // Criar um container para o conteúdo
-        const container = document.createElement('div');
+function concluir() {
+    // Ordenar o imageMetadataList
+    imageMetadataList.sort((a, b) => {
+        const order = {"Atrasado": 1, "Pendente": 2, "Concluido": 3};
+        return order[a.status] - order[b.status];
+    });
 
-        // Criar a tag meta para definir a codificação UTF-8
-        const metaCharset = document.createElement('meta');
-        metaCharset.setAttribute('charset', 'UTF-8');
-        container.appendChild(metaCharset);
+    // Criar um container para o conteúdo
+    const container = document.createElement('div');
 
-        // Criar uma tabela para conter as imagens e informações
-        const table = document.createElement('table');
-        table.style.width = '100%'; // Ajustar conforme necessário
+    // Criar a tag meta para definir a codificação UTF-8
+    const metaCharset = document.createElement('meta');
+    metaCharset.setAttribute('charset', 'UTF-8');
+    container.appendChild(metaCharset);
 
-        // Adicionar a tabela ao container
-        container.appendChild(table);
-    
-        // Process each image metadata asynchronously
-        Promise.all(imageMetadataList.map(async (image) => {
-            imagem.sort((a, b) => {
-                const order = {"Atrasado": 1, "Pendente": 2, "Concluido": 3};
-                return order[a.status] - order[b.status];
-            });
-            console.log(image)
-            const row = table.insertRow();
-    
-            // Create the first cell for images
-            const imgCell = row.insertCell();
-            const imgElement = document.createElement('img');
-    
-            // Resize the image and set the source
-            const resizedImageSrc = await resizeImage(image.thumbnail, 300, 200); // Example size: 300x300
-            imgElement.src = resizedImageSrc;
-            imgElement.style.height = '30px'; // Adjust as needed
-            imgCell.appendChild(imgElement);
-    
-            // Create the second cell for information
-            const infoCell = row.insertCell();
-            infoCell.innerHTML = `<strong>Titulo:</strong> ${image.index + 1}<br>Data/hora: ${image.date} <br>Status: ${image.status}<br>Descrição: ${image.description}<br> Coordenadas UTM:<br> ${calculateUTM(image.Latitude,image.Longitude)}`;
-        })).then(() => {
-            // After all images have been processed
-            const content = table.outerHTML;
-            const converted = htmlDocx.asBlob(content);
-    
-            // Create a download link
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(converted);
-            link.download = 'output.docx';
-    
-            // Trigger the download
-            link.click();
-        });
-    }
+    // Criar uma tabela para conter as imagens e informações
+    const table = document.createElement('table');
+    table.style.width = '100%'; // Ajustar conforme necessário
+
+    // Adicionar a tabela ao container
+    container.appendChild(table);
+
+    // Processar cada item de metadados de imagem de forma assíncrona
+    Promise.all(imageMetadataList.map(async (image) => {
+        const row = table.insertRow();
+
+        // Criar a primeira célula para imagens
+        const imgCell = row.insertCell();
+        const imgElement = document.createElement('img');
+
+        // Redimensionar a imagem e definir a fonte
+        const resizedImageSrc = await resizeImage(image.thumbnail, 300, 200); // Exemplo de tamanho: 300x200
+        imgElement.src = resizedImageSrc;
+        imgElement.style.height = '30px'; // Ajustar conforme necessário
+        imgCell.appendChild(imgElement);
+
+        // Criar a segunda célula para informações
+        const infoCell = row.insertCell();
+        infoCell.innerHTML = `<strong>Título:</strong> ${image.index + 1}<br>Data/hora: ${image.date} <br>Status: ${image.status}<br>Descrição: ${image.description}<br>Coordenadas UTM:<br> ${calculateUTM(image.Latitude, image.Longitude)}`;
+    })).then(() => {
+        // Após o processamento de todas as imagens
+        const content = table.outerHTML;
+        const converted = htmlDocx.asBlob(content);
+
+        // Criar um link para download
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(converted);
+        link.download = 'output.docx';
+
+        // Acionar o download
+        link.click();
+    });
+}
+
 
     function escapeSpecialChars(str) {
     const replacements = {
