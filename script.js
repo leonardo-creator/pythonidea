@@ -284,6 +284,59 @@ document.addEventListener("DOMContentLoaded", function () {
     return str.replace(/[ÁáÂâÀàÃãÉéÊêÍíÓóÔôÕõÚúÇçºª&<>"']/g, match => replacements[match]);
 }
 
-             
+
+ document.getElementById('generate-kml').addEventListener('click', processFiles);
+
+function processFiles() {
+    const jsonInput = imageMetadataList;
+
+    if (jsonInput.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const jsonData = JSON.parse(e.target.result);
+            processJsonData(jsonData);
+        };
+        reader.readAsText(jsonInput.files[0]);
+    } else {
+        alert('Por favor, carregue um arquivo JSON.');
+    }
+}
+
+function processJsonData(jsonData) {
+    let kmlContent = '<?xml version="1.0" encoding="UTF-8"?>';
+    kmlContent += '<kml xmlns="http://www.opengis.net/kml/2.2">';
+    kmlContent += '<Document>';
+
+    jsonData.forEach(item => {
+        kmlContent += createPlacemark(item);
+    });
+
+    kmlContent += '</Document></kml>';
+
+    // Aqui você pode, por exemplo, criar um link para download do KML
+    download('incidentes.kml', kmlContent);
+}
+
+function createPlacemark(item) {
+    return `
+    <Placemark>
+        <name>${item.name}</name>
+        <description><![CDATA[<img src="${item.thumbnail}" />${item.description}]]></description>
+        <Point><coordinates>${item.Longitude},${item.Latitude}</coordinates></Point>
+    </Placemark>`;
+}
+
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
     
 });
