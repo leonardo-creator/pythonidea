@@ -23,7 +23,6 @@ header h1 {
 footer {
     background-color: #333; /* Cor de fundo */
     color: white; /* Cor do texto */
-    padding: 10px 20px; /* Espaçamento interno */
     text-align: center; /* Alinhamento do texto */
     position: absolute;
     bottom: 0;
@@ -107,7 +106,7 @@ button {
 }
 
 #metadataList {
-    max-height: 75vh;
+    max-height: 60vh;
     overflow-y: auto; /* Permite o scroll se o conteúdo exceder 400px */
 }
 
