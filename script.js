@@ -221,6 +221,8 @@ function concluir() {
         return order[a.status] - order[b.status];
     });
 
+    console.log(imageMetadataList)
+
     // Criar um container para o conteúdo
     const container = document.createElement('div');
 
@@ -252,7 +254,7 @@ function concluir() {
 
         // Criar a segunda célula para informações
         const infoCell = row.insertCell();
-        infoCell.innerHTML = `<strong>Título:</strong> ${image.index + 1}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Descrição:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> ${calculateUTM(image.Latitude, image.Longitude)}`;
+        infoCell.innerHTML = `<strong>Título:</strong> ${image.index + 1}<br><strong>Nome arquivo:</strong> ${image.filenmae}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Descrição:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> ${calculateUTM(image.Latitude, image.Longitude)}`;
     })).then(() => {
         // Após o processamento de todas as imagens
         const content = table.outerHTML;
