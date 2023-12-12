@@ -314,11 +314,12 @@ function processJsonData(jsonData) {
 }
 
 function createPlacemark(item) {
+    const resizedImageSrc = await resizeImage(item.thumbnail, 300, 200);
     return `
     <Placemark>
         <name>${item.name}</name>
-        <description><![CDATA[<img src="${item.thumbnail}" />${item.description}]]></description>
-        <Point><coordinates>${item.Longitude},${item.Latitude}</coordinates></Point>
+        <description><![CDATA[<img src="${resizedImageSrc}" />${item.description}]]></description>
+        <Point><coordinates>${item.Latitude},${item.Longitude}</coordinates></Point>
     </Placemark>`;
 }
 
