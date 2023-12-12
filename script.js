@@ -407,12 +407,23 @@ function downloadExcel() {
 
     document.getElementById('download-json').addEventListener('click', downloadJson);
 
-    function downloadJson() {
-        // Suponha que `jsonData` é o seu array de objetos JSON
-        const jsonData = imageMetadataList; // Substitua com o nome da sua variável JSON
+    async function downloadJson() {
+        
+        const jsonData = imageMetadataList; 
+    
+        // Redimensionar todas as imagens
+        const resizedImagesPromises = jsonData.map(async (item) => {
+            if (item.thumbnail) {
+                const resizedImage = await resizeImage(item.thumbnail, 300, 200); // Use as dimensões desejadas
+                return {...item, thumbnail: resizedImage};
+            }
+            return item;
+        });
+    
+        const resizedJsonData = await Promise.all(resizedImagesPromises);
     
         // Converte os dados em string JSON
-        const jsonString = JSON.stringify(jsonData);
+        const jsonString = JSON.stringify(resizedJsonData);
     
         // Cria um Blob a partir da string JSON
         const blob = new Blob([jsonString], {type: "application/json"});
@@ -427,6 +438,7 @@ function downloadExcel() {
         // Limpa o URL criado
         URL.revokeObjectURL(url);
     }
+
 
     
 });
