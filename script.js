@@ -323,13 +323,38 @@ async function processJsonData(jsonData) {
 
 async function createPlacemark(item) {
     const resizedImageSrc = await resizeImage(item.thumbnail, 300, 200);
+    let iconUrl;
+
+    // Selecionando a URL do ícone com base no status
+    switch (item.status.toLowerCase().replace(" ", "").replace("í", "i")) {
+        case "Atrasado":
+            iconUrl = "http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png";
+            break;
+        case "Pendente" :
+            iconUrl = "http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png";
+            break;
+        case "Concluido":
+            iconUrl = "http://maps.google.com/mapfiles/kml/pushpin/grn-pushpin.png";
+            break;
+        default:
+            iconUrl = "http://maps.google.com/mapfiles/kml/pushpin/blue-pushpin.png";
+    }
+
     return `
     <Placemark>
-        <name>${item.name}</name>
-        <description><![CDATA[<img src="${resizedImageSrc}" />${item.description}]]></description>
-        <Point><coordinates>-${item.Longitude},-${item.Latitude}</coordinates></Point>
+        <name>${item.index + 1}</name>
+        <Style>
+            <IconStyle>
+                <Icon>
+                    <href>${iconUrl}</href> 
+                </Icon>
+            </IconStyle>
+        </Style>
+        <description><![CDATA[<p>${item.description}</p><img src="${resizedImageSrc}" />]]></description>
+        <Point><coordinates>${item.Longitude},${item.Latitude}</coordinates></Point>
     </Placemark>`;
 }
+
 
 function download(filename, text) {
     var element = document.createElement('a');
