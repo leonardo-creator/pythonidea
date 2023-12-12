@@ -1,56 +1,62 @@
+/* Estilos gerais para a página */
 body {
     font-family: Arial, sans-serif;
-    display: flex;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
 
+/* Estilo para os botões */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para a lista de metadados */
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
 .metadata-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
     display: flex;
-    list-style: none;
-    margin-bottom: 20px;
     align-items: center;
 }
 
-img {
-    max-height: 20vw;
-    height: auto;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.metadata-item img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 20px;
+    border-radius: 5px;
 }
+
 .metadata-info {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    margin-left: 2vh;
+    flex-grow: 1;
 }
 
-.document-container {
-    max-width: 200px; /* Defina a largura máxima do container conforme necessário */
-    margin: 0 auto; /* Centraliza o container na página */
-    display: flex;
+.metadata-info strong {
+    color: #333;
+    margin-right: 5px;
 }
 
-.row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.column {
-    width: 48%;
-    box-sizing: border-box;
-}
-
-.image {
-    width: auto;
-    height: 30PX;
-}
-
-.info {
-    display: flex;
-    flex-direction: column;
-}
-
-.info p {
-    margin: 0;
+select, input[type="text"] {
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
 }
