@@ -218,8 +218,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // Criar um container para o conteúdo
         const container = document.createElement('div');
 
-        // Adicionar tag meta para definir a codificação UTF-8
-        container.innerHTML = '<meta charset="UTF-8">';
+        // Criar a tag meta para definir a codificação UTF-8
+        const metaCharset = document.createElement('meta');
+        metaCharset.setAttribute('charset', 'UTF-8');
+        container.appendChild(metaCharset);
 
         // Criar uma tabela para conter as imagens e informações
         const table = document.createElement('table');
@@ -260,5 +262,28 @@ document.addEventListener("DOMContentLoaded", function () {
             link.click();
         });
     }
+
+    function escapeSpecialChars(str) {
+    const replacements = {
+        'Á': '&Aacute;', 'á': '&aacute;',
+        'Â': '&Acirc;', 'â': '&acirc;',
+        'À': '&Agrave;', 'à': '&agrave;',
+        'Ã': '&Atilde;', 'ã': '&atilde;',
+        'É': '&Eacute;', 'é': '&eacute;',
+        'Ê': '&Ecirc;', 'ê': '&ecirc;',
+        'Í': '&Iacute;', 'í': '&iacute;',
+        'Ó': '&Oacute;', 'ó': '&oacute;',
+        'Ô': '&Ocirc;', 'ô': '&ocirc;',
+        'Õ': '&Otilde;', 'õ': '&otilde;',
+        'Ú': '&Uacute;', 'ú': '&uacute;',
+        'Ç': '&Ccedil;', 'ç': '&ccedil;',
+        'º': '&ordm;', 'ª': '&ordf;',
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&apos;'
+    };
+
+    return str.replace(/[ÁáÂâÀàÃãÉéÊêÍíÓóÔôÕõÚúÇçºª&<>"']/g, match => replacements[match]);
+}
+
              
     
+});
