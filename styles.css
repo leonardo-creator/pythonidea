@@ -90,13 +90,14 @@ select, input[type="text"] {
 .custom-button, button {
     background-color: #007bff; /* Cor de fundo azul */
     color: white;
-    padding: 5vh 15px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     margin: 5px;
     transition: background-color 0.3s;
+    margin-top: 5vh;
 }
 
 .custom-button:hover, button:hover {
