@@ -326,7 +326,7 @@ async function createPlacemark(item) {
     let iconUrl;
 
     // Selecionando a URL do ícone com base no status
-    switch (item.status.toLowerCase().replace(" ", "").replace("í", "i")) {
+    switch (item.status) {
         case "Atrasado":
             iconUrl = "http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png";
             break;
@@ -351,9 +351,9 @@ async function createPlacemark(item) {
             </IconStyle>
         </Style>
         <description><![CDATA[<p>${item.description}</p><img src="${resizedImageSrc}" />]]></description>
-        <Point><coordinates>${item.Longitude},${item.Latitude}</coordinates></Point>
+        <Point><coordinates>-${item.Longitude},-${item.Latitude}</coordinates></Point>
     </Placemark>`;
-}
+}w
 
 
 function download(filename, text) {
