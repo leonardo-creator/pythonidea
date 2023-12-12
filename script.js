@@ -369,5 +369,41 @@ function download(filename, text) {
     document.body.removeChild(element);
 }
 
+
+document.getElementById('download-excel').addEventListener('click', downloadExcel);
+
+function downloadExcel() {
+    // Suponha que `jsonData` é o seu array de objetos JSON
+    const jsonData = imageMetadataList.map(({thumbnail, ...rest}) => rest);
+
+    // Converte o JSON para uma planilha
+    const worksheet = XLSX.utils.json_to_sheet(jsonData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Dados");
+
+    // Define as opções de escrita do arquivo
+    const wbout = XLSX.write(workbook, {bookType:'xlsx', type:'binary'});
+
+    // Função para converter o conteúdo binário para um Blob
+    function s2ab(s) {
+        const buf = new ArrayBuffer(s.length);
+        const view = new Uint8Array(buf);
+        for (let i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+    }
+
+    // Cria um Blob a partir dos dados e cria um link para download
+    const blob = new Blob([s2ab(wbout)], {type:"application/octet-stream"});
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'dados.xlsx';
+    a.click();
+
+    // Limpa o URL criado
+    URL.revokeObjectURL(url);
+}
+
     
 });
