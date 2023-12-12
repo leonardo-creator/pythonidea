@@ -353,7 +353,7 @@ async function createPlacemark(item) {
         <description><![CDATA[<p>${item.description}</p><img src="${resizedImageSrc}" />]]></description>
         <Point><coordinates>-${item.Longitude},-${item.Latitude}</coordinates></Point>
     </Placemark>`;
-}w
+}
 
 
 function download(filename, text) {
