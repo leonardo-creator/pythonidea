@@ -70,7 +70,7 @@ ul {
 
 .metadata-info {
     flex-grow: 1;
-    font-size: 2vw;
+    font-size: 1em;
 }
 
 .metadata-info strong {
