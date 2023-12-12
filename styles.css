@@ -95,9 +95,8 @@ select, input[type="text"] {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin: 5px;
+    margin: 5vw;
     transition: background-color 0.3s;
-    margin-top: 40vh;
 }
 
 .custom-button:hover, button:hover {
