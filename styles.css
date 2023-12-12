@@ -13,7 +13,7 @@ header {
     color: white; /* Cor do texto */
     padding: 10px 20px; /* Espaçamento interno */
     text-align: center; /* Alinhamento do texto */
-    height: 10vh;
+    height: 5vh;
 }
 
 header h1 {
@@ -95,7 +95,7 @@ select, input[type="text"] {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin: 5vw;
+    margin: 10vw;
     transition: background-color 0.3s;
 }
 
