@@ -35,42 +35,63 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayMetadata(metadata) {
         const listItem = document.createElement("li");
         listItem.className = "metadata-item";
-
+    
         // Exibir a foto ao lado das propriedades
         const imgElement = document.createElement("img");
         imgElement.src = metadata.thumbnail;
         listItem.appendChild(imgElement);
-
+    
         const metadataInfo = document.createElement("div");
         metadataInfo.className = "metadata-info";
-
-        // Exibir as propriedades, o status e a descrição
-        metadataInfo.innerHTML = `<strong>${metadata.name}:</strong>
-            <br>
-            <strong>Status:</strong> 
-            <select id="status-${metadata.index}">
-                <option value="Pendente">Pendente</option>
-                <option value="Concluído">Concluído</option>
-                <option value="Atrasado">Atrasado</option>
-            </select>
-            <br>
-            <strong>Descrição:</strong> 
-            <input type="text" id="description-${metadata.index}" placeholder="Descrição" value="${metadata.description || ""}">
-            <br>
-            <strong>Data/hora:</strong> ${metadata["Last Modified"]}
-            <br>
-            <strong>Coordenadas UTM:</strong> ${calculateUTM(metadata.Latitude, metadata.Longitude)}`;
-
-        metadataInfo.addEventListener("change", function () {
-            metadata.status = document.getElementById(`status-${metadata.index}`).value;
-            metadata.description = document.getElementById(`description-${metadata.index}`).value;
+    
+        // Criar e configurar o select para o status
+        const statusSelect = document.createElement("select");
+        statusSelect.id = `status-${metadata.index}`;
+        const statusOptions = ["Pendente", "Concluido", "Atrasado"];
+        statusOptions.forEach(status => {
+            const option = document.createElement("option");
+            option.value = status;
+            option.text = status;
+            option.selected = status === metadata.status;
+            statusSelect.appendChild(option);
         });
-
+    
+        // Adicionar ouvinte de evento ao select
+        statusSelect.addEventListener("change", function () {
+            metadata.status = statusSelect.value;
+        });
+    
+        // Criar e configurar o input para a descrição
+        const descriptionInput = document.createElement("input");
+        descriptionInput.type = "text";
+        descriptionInput.id = `description-${metadata.index}`;
+        descriptionInput.placeholder = "Descrição";
+        descriptionInput.value = metadata.description || "";
+    
+        // Adicionar ouvinte de evento ao input
+        descriptionInput.addEventListener("change", function () {
+            metadata.description = descriptionInput.value;
+        });
+    
+        // Adicionar os elementos ao metadataInfo
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode(`${metadata.name}:`)));
+        metadataInfo.appendChild(document.createElement("br"));
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Status:")));
+        metadataInfo.appendChild(statusSelect);
+        metadataInfo.appendChild(document.createElement("br"));
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Descrição:")));
+        metadataInfo.appendChild(descriptionInput);
+        metadataInfo.appendChild(document.createElement("br"));
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Data/hora:")));
+        metadataInfo.appendChild(document.createTextNode(`${metadata["date"]}`));
+        metadataInfo.appendChild(document.createElement("br"));
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Coordenadas UTM:")));
+        metadataInfo.appendChild(document.createTextNode(`${calculateUTM(metadata.Latitude, metadata.Longitude)}`));
+    
         listItem.appendChild(metadataInfo);
-
         metadataList.appendChild(listItem);
-
     }
+    
 
     function readImageMetadata(file, index) {
         return new Promise((resolve, reject) => {
@@ -92,7 +113,14 @@ document.addEventListener("DOMContentLoaded", function () {
                             description: "",
                             "File Size": `${(file.size / 1024).toFixed(2)} KB`,
                             "File Type": file.type,
-                            "Last Modified": file.lastModifiedDate.toLocaleDateString(),
+                            "date": file.lastModifiedDate.toLocaleString('pt-BR', {
+                                year: 'numeric', 
+                                month: '2-digit', 
+                                day: '2-digit', 
+                                hour: '2-digit', 
+                                minute: '2-digit', 
+                                second: '2-digit'
+                            }),                            
                             Latitude: lat ? convertDMSToDD(lat) : "N/A",
                             Longitude: lon ? convertDMSToDD(lon) : "N/A",
                             thumbnail: e.target.result,
@@ -137,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const utmEasting = utm[0];
         const utmNorthing = utm[1];
 
-        return `UTM X: ${utmEasting.toFixed(3)}, UTM Y: ${utmNorthing.toFixed(3)}`;
+        return `${utmEasting.toFixed(3)}, ${utmNorthing.toFixed(3)}`;
     }
 
     // Add event listener for the "Concluir" button
@@ -146,81 +174,91 @@ document.addEventListener("DOMContentLoaded", function () {
         concluir();
     });
 
-    function resizeImage(img, maxWidth, maxHeight) {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-
-        // Set the canvas size to the maximum dimensions
-        canvas.width = maxWidth;
-        canvas.height = maxHeight;
-
-        // Draw the image onto the canvas
-        ctx.drawImage(img, 0, 0, maxWidth, maxHeight);
-
-        // Convert the canvas back to a data URL
-        return canvas.toDataURL('image/jpeg');
-    }
-
-
-    // Function to generate and display JSON
-    function concluir() {
-        // Create a JSON string from the metadataList
-        const jsonContent = JSON.stringify(imageMetadataList, null, 2);
-
-        // Display the JSON content (you can modify this based on your UI)
-        console.log("JSON content:\n\n" + jsonContent);
-
-        // Create a div to hold the content
-        const container = document.createElement('div');
-        container.className = 'document-container'; // Aplica a classe de estilo ao container geral
-
-        // Iterate over each image metadata
-        imageMetadataList.forEach(image => {
-            // Create a row for each image
-            const row = document.createElement('div');
-            row.className = 'row';
-
-            // Create the first column for images
-            const imgColumn = document.createElement('div');
-            imgColumn.className = 'column';
-
-            // Create an image element
-            const imgElement = document.createElement('img');
-            imgElement.src = image.thumbnail;
-            imgElement.className = 'image';
-            imgColumn.appendChild(imgElement);
-
-            // Create the second column for information
-            const infoColumn = document.createElement('div');
-            infoColumn.className = 'column info';
-            const infoParagraph = document.createElement('p');
-            infoParagraph.textContent = `Name: ${image.name}\nStatus: ${image.status}\nFile Size: ${image["File Size"]}\nFile Type: ${image["File Type"]}\nLast Modified: ${image["Last Modified"]}\nLatitude: ${image.Latitude}\nLongitude: ${image.Longitude}`;
-            infoColumn.appendChild(infoParagraph);
-
-            // Append columns to the row
-            row.appendChild(imgColumn);
-            row.appendChild(infoColumn);
-
-            // Append the row to the container
-            container.appendChild(row);
-        });
-
-        // Convert the HTML content to Word format using html-docx-js
-        const content = container.innerHTML;
-        const converted = htmlDocx.asBlob(content);
-
-        // Create a download link
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(converted);
-        link.download = 'output.docx';
-
-        // Trigger the download
-        link.click();
-    }
-
-
-            
+    function resizeImage(src, maxWidth, maxHeight) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => {
+                // Criar um canvas
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
     
-});
+                // Calcular as novas dimensões da imagem mantendo a proporção
+                let width = img.width;
+                let height = img.height;
+    
+                if (width > height) {
+                    if (width > maxWidth) {
+                        height *= maxWidth / width;
+                        width = maxWidth;
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        width *= maxHeight / height;
+                        height = maxHeight;
+                    }
+                }
+    
+                // Definir as dimensões do canvas
+                canvas.width = width;
+                canvas.height = height;
+    
+                // Desenhar a imagem no canvas
+                ctx.drawImage(img, 0, 0, width, height);
+    
+                // Converter o canvas para uma URL de dados
+                resolve(canvas.toDataURL());
+            };
+            img.onerror = reject;
+            img.src = src;
+        });
+    }
+    
 
+    function concluir() {
+        // Criar um container para o conteúdo
+        const container = document.createElement('div');
 
+        // Adicionar tag meta para definir a codificação UTF-8
+        container.innerHTML = '<meta charset="UTF-8">';
+
+        // Criar uma tabela para conter as imagens e informações
+        const table = document.createElement('table');
+        table.style.width = '100%'; // Ajustar conforme necessário
+
+        // Adicionar a tabela ao container
+        container.appendChild(table);
+    
+        // Process each image metadata asynchronously
+        Promise.all(imageMetadataList.map(async (image) => {
+            console.log(image)
+            const row = table.insertRow();
+    
+            // Create the first cell for images
+            const imgCell = row.insertCell();
+            const imgElement = document.createElement('img');
+    
+            // Resize the image and set the source
+            const resizedImageSrc = await resizeImage(image.thumbnail, 300, 200); // Example size: 300x300
+            imgElement.src = resizedImageSrc;
+            imgElement.style.height = '30px'; // Adjust as needed
+            imgCell.appendChild(imgElement);
+    
+            // Create the second cell for information
+            const infoCell = row.insertCell();
+            infoCell.innerHTML = `<strong>Titulo:</strong> ${image.index + 1}<br>Data/hora: ${image.date} <br>Status: ${image.status}<br>Descrição: ${image.description}<br> Coordenadas UTM:<br> ${calculateUTM(image.Latitude,image.Longitude)}`;
+        })).then(() => {
+            // After all images have been processed
+            const content = table.outerHTML;
+            const converted = htmlDocx.asBlob(content);
+    
+            // Create a download link
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(converted);
+            link.download = 'output.docx';
+    
+            // Trigger the download
+            link.click();
+        });
+    }
+             
+    
