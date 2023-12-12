@@ -405,5 +405,28 @@ function downloadExcel() {
     URL.revokeObjectURL(url);
 }
 
+    document.getElementById('download-json').addEventListener('click', downloadJson);
+
+    function downloadJson() {
+        // Suponha que `jsonData` é o seu array de objetos JSON
+        const jsonData = imageMetadataList; // Substitua com o nome da sua variável JSON
+    
+        // Converte os dados em string JSON
+        const jsonString = JSON.stringify(jsonData);
+    
+        // Cria um Blob a partir da string JSON
+        const blob = new Blob([jsonString], {type: "application/json"});
+    
+        // Cria um link para download e aciona o download
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'dados.json';
+        a.click();
+    
+        // Limpa o URL criado
+        URL.revokeObjectURL(url);
+    }
+
     
 });
