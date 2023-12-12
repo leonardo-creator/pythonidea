@@ -90,7 +90,7 @@ select, input[type="text"] {
 .custom-button, button {
     background-color: #007bff; /* Cor de fundo azul */
     color: white;
-    padding: 20px 15px;
+    padding: 5vh 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
