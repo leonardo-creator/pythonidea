@@ -12,7 +12,7 @@ body {
 }
 
 img {
-    max-height: 30vw;
+    max-height: 20vw;
     height: auto;
     border: 1px solid #ddd;
     border-radius: 4px;
