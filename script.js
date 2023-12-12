@@ -319,7 +319,7 @@ async function createPlacemark(item) {
     <Placemark>
         <name>${item.name}</name>
         <description><![CDATA[<img src="${resizedImageSrc}" />${item.description}]]></description>
-        <Point><coordinates>${item.Latitude},${item.Longitude}</coordinates></Point>
+        <Point><coordinates>-${item.Longitude},-${item.Latitude}</coordinates></Point>
     </Placemark>`;
 }
 
