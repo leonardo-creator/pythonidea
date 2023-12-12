@@ -7,7 +7,29 @@ body {
     color: #110043; /* Cor de texto clara */
 }
 
-/* Estilo para os botões */
+/* Estilos para o cabeçalho */
+header {
+    background-color: #007bff; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    text-align: center; /* Alinhamento do texto */
+}
+
+header h1 {
+    margin: 0; /* Remove a margem padrão */
+}
+
+/* Estilos para o rodapé */
+footer {
+    background-color: #333; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    text-align: center; /* Alinhamento do texto */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 button {
     background-color: #F3593B; /* Cor dos botões */
     color: white;
