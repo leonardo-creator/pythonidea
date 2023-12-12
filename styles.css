@@ -13,7 +13,7 @@ header {
     color: white; /* Cor do texto */
     padding: 10px 20px; /* Espaçamento interno */
     text-align: center; /* Alinhamento do texto */
-    height: 5vh;
+    height: 10vh;
 }
 
 header h1 {
