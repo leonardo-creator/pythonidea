@@ -86,7 +86,7 @@ select, input[type="text"] {
     border: 1px solid #ccc;
 }
 
-/* Estilo para botões e botões personalizados */
+
 .custom-button, button {
     background-color: #007bff; /* Cor de fundo azul */
     color: white;
@@ -95,7 +95,7 @@ select, input[type="text"] {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin: 10vw;
+    margin: 10vw 10vw;
     transition: background-color 0.3s;
 }
 
