@@ -439,6 +439,20 @@ function downloadExcel() {
         URL.revokeObjectURL(url);
     }
 
+    document.getElementById('imageInput').addEventListener('change', function() {
+    if (this.files.length > 0) {
+        // Mostrar os botões
+        document.getElementById('concluirButton').style.display = 'inline-block';
+        document.getElementById('generate-kml').style.display = 'inline-block';
+        document.getElementById('download-excel').style.display = 'inline-block';
+        document.getElementById('download-json').style.display = 'inline-block';
+
+        // Ocultar o botão de upload
+        document.getElementById('upload-label').style.display = 'none';
+    }
+});
+
+// Restante do seu código JavaScript
 
     
 });
