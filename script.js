@@ -298,18 +298,18 @@ function processFiles() {
     }
 }
 
-function processJsonData(jsonData) {
+async function processJsonData(jsonData) {
     let kmlContent = '<?xml version="1.0" encoding="UTF-8"?>';
     kmlContent += '<kml xmlns="http://www.opengis.net/kml/2.2">';
     kmlContent += '<Document>';
 
-    jsonData.forEach(item => {
-        kmlContent += createPlacemark(item);
-    });
+    for (const item of jsonData) {
+        const placemark = await createPlacemark(item);
+        kmlContent += placemark;
+    }
 
     kmlContent += '</Document></kml>';
 
-    // Criar um link para download do KML
     download('incidentes.kml', kmlContent);
 }
 
