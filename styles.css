@@ -107,7 +107,7 @@ button {
 }
 
 #metadataList {
-    max-height: 400px;
+    max-height: 75vh;
     overflow-y: auto; /* Permite o scroll se o conteúdo exceder 400px */
 }
 
