@@ -252,7 +252,7 @@ function concluir() {
 
         // Criar a segunda célula para informações
         const infoCell = row.insertCell();
-        infoCell.innerHTML = `<strong>Título:</strong> ${image.index + 1}<br>Data/hora: ${image.date} <br>Status: ${image.status}<br>Descrição: ${image.description}<br>Coordenadas UTM:<br> ${calculateUTM(image.Latitude, image.Longitude)}`;
+        infoCell.innerHTML = `<strong>Título:</strong> ${image.index + 1}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Descrição:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> ${calculateUTM(image.Latitude, image.Longitude)}`;
     })).then(() => {
         // Após o processamento de todas as imagens
         const content = table.outerHTML;
