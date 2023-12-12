@@ -313,7 +313,7 @@ function processJsonData(jsonData) {
     download('incidentes.kml', kmlContent);
 }
 
-function createPlacemark(item) {
+async function createPlacemark(item) {
     const resizedImageSrc = await resizeImage(item.thumbnail, 300, 200);
     return `
     <Placemark>
