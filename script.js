@@ -232,6 +232,10 @@ document.addEventListener("DOMContentLoaded", function () {
     
         // Process each image metadata asynchronously
         Promise.all(imageMetadataList.map(async (image) => {
+            imagem.sort((a, b) => {
+                const order = {"Atrasado": 1, "Pendente": 2, "Concluido": 3};
+                return order[a.status] - order[b.status];
+            });
             console.log(image)
             const row = table.insertRow();
     
