@@ -106,4 +106,8 @@ button {
     display: inline-block; /* Ajuste para alinhar corretamente os botões */
 }
 
-/* Estilos adicionais conforme necessário */
+#metadataList {
+    max-height: 400px;
+    overflow-y: auto; /* Permite o scroll se o conteúdo exceder 400px */
+}
+
