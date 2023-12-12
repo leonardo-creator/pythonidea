@@ -3,12 +3,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: #110043; /* Cor de fundo escura */
+    color: #A2FF00; /* Cor de texto clara */
 }
 
 /* Estilo para os botões */
 button {
-    background-color: #007bff;
+    background-color: #F3593B; /* Cor dos botões */
     color: white;
     padding: 10px 15px;
     border: none;
@@ -20,7 +21,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #c1462d; /* Cor de hover dos botões */
 }
 
 /* Estilos para a lista de metadados */
@@ -39,10 +40,11 @@ ul {
 }
 
 .metadata-item img {
-    max-width: 100px;
-    max-height: 100px;
+    width: 150px; /* Aumentando o tamanho das imagens */
+    height: 150px; /* Ajuste conforme necessário */
     margin-right: 20px;
     border-radius: 5px;
+    object-fit: cover; /* Garante que a imagem se ajuste ao espaço */
 }
 
 .metadata-info {
@@ -50,7 +52,7 @@ ul {
 }
 
 .metadata-info strong {
-    color: #333;
+    color: #F3593B; /* Cor para destaques */
     margin-right: 5px;
 }
 
