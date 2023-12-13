@@ -118,16 +118,18 @@ select, input[type="text"] {
     overflow-y: auto; 
 }
 
+/* Estilos adicionais para botões com imagens */
 .word-button, .kml-button, .excel-button, .json-button {
-    width: 15vw; /* Ajuste conforme necessário */
-    height: 50px; /* Ajuste conforme necessário */
-    background-size: cover; /* Garante que a imagem cubra todo o botão */
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
     border: none;
     cursor: pointer;
-    margin-right: 10px; /* Espaçamento entre botões */
+    margin-right: 10px; 
     margin-top: 10px;
 }
 
+/* Definições de imagens específicas para cada botão */
 .word-button {
     background-image: url('word.jpg');
 }
