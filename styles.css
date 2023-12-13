@@ -225,7 +225,7 @@ select, input[type="text"] {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 80vh;
+    height: 70vh;
 }
 
 
