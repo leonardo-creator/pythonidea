@@ -192,7 +192,7 @@ select, input[type="text"] {
 .image-column, .text-column {
     flex: 1; 
     padding: 10px;
-    background-color: whitesmoke;
+    ;
 }
 
 .image-column {
@@ -207,5 +207,5 @@ select, input[type="text"] {
 }
 
 .text-column {
-   
+    background-color: whitesmoke
 }
