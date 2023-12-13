@@ -195,11 +195,11 @@ select, input[type="text"] {
 }
 
 .image-column {
-   
+   height: 50vh;
 }
 
 .image-column img {
-    width: 100%; 
+    width: 60%; 
     height: auto; 
 }
 
