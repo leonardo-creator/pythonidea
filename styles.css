@@ -182,3 +182,7 @@ select, input[type="text"] {
 .custom-button-upload{
     width: 50%;
 }
+
+.itemup{
+    width: 10vw;
+}
