@@ -135,13 +135,13 @@ select, input[type="text"] {
 }
 
 .kml-button {
-    background-image: url('caminho_para_imagem_kml.jpg');
+    background-image: url('earth.jpg');
 }
 
 .excel-button {
-    background-image: url('caminho_para_imagem_excel.jpg');
+    background-image: url('excel.jpg');
 }
 
 .json-button {
-    background-image: url('caminho_para_imagem_json.jpg');
+    background-image: url('json.jpg');
 }
