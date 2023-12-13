@@ -192,7 +192,6 @@ select, input[type="text"] {
 .image-column, .text-column {
     flex: 1; 
     padding: 10px;
-    height: 70vh;
 }
 
 .image-column {
