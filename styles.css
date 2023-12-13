@@ -1,5 +1,6 @@
 /* Estilos gerais para a página */
 body {
+    display: flex;
     font-family: Arial, sans-serif;
     margin: 0;
     background-color: #110043; /* Cor de fundo escura */
