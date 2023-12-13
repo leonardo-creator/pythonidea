@@ -208,6 +208,15 @@ select, input[type="text"] {
 
 .text-column {
     background-color: whitesmoke;
+}
+
+.text-column h2{
+    background-color: whitesmoke;
+    font-size: 2em;
+}
+
+.text-column p{
+    background-color: whitesmoke;
     font-size: 1.5em;
 }
 
