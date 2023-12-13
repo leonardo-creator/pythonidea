@@ -95,8 +95,6 @@ select, input[type="text"] {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 50vw;
-    margin: 2vw;
     transition: background-color 0.3s;
 }
 
