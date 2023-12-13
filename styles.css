@@ -185,4 +185,6 @@ select, input[type="text"] {
 
 .itemup{
     width: 100vw;
+    display: flex;
+    justify-content: center;
 }
