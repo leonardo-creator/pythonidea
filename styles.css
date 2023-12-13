@@ -192,10 +192,13 @@ select, input[type="text"] {
 .image-column, .text-column {
     flex: 1; 
     padding: 10px;
+    background-color: whitesmoke;
 }
 
 .image-column {
    height: 50vh;
+   display: flex;
+   justify-content: center;
 }
 
 .image-column img {
