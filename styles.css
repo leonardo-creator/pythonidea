@@ -118,7 +118,7 @@ select, input[type="text"] {
 
 
 #metadataList {
-    max-height: 70vh;
+    max-height: 60vh;
     overflow-y: auto; 
 }
 
@@ -131,7 +131,6 @@ select, input[type="text"] {
     cursor: pointer;
 }
 
-/* Definições de imagens específicas para cada botão */
 .word-button {
     background-image: url('word.png');
 }
