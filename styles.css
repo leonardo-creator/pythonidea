@@ -9,6 +9,7 @@ body {
 
 /* Estilos para o cabeçalho */
 header {
+    width: 100%;
     background-color: #007bff; /* Cor de fundo */
     color: white; /* Cor do texto */
     padding: 10px 20px; /* Espaçamento interno */
