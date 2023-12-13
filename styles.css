@@ -47,8 +47,6 @@ footer {
     background-color: #333; /* Cor de fundo */
     color: white; /* Cor do texto */
     text-align: center; /* Alinhamento do texto */
-    position: absolute;
-    bottom: 0;
     width: 100%;
     height: 5vh;
 }
