@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const option = document.createElement("option");
             option.value = status;
             option.text = status;
+            option.style.fontWeight = "2em";
             option.selected = status === metadata.status;
             statusSelect.appendChild(option);
         });
@@ -67,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
         descriptionInput.id = `description-${metadata.index}`;
         descriptionInput.placeholder = "Descrição";
         descriptionInput.value = metadata.description || "";
+        descriptionInput.style.fontWeight = "2em";
     
         // Adicionar ouvinte de evento ao input
         descriptionInput.addEventListener("change", function () {
