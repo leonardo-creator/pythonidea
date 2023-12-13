@@ -8,18 +8,18 @@ body {
     flex-direction: column;
 }
 
-/* Estilos para o cabeçalho */
+
 header {
     width: 100vw;
-    background-color: #007bff; /* Cor de fundo */
-    color: white; /* Cor do texto */
-    padding: 10px 20px; /* Espaçamento interno */
-    text-align: center; /* Alinhamento do texto */
+    background-color: #007bff; 
+    color: white; 
+    padding: 10px 20px; 
+    text-align: center; 
     height: 5vh;
 }
 
 header h1 {
-    margin: 0; /* Remove a margem padrão */
+    margin: 0; 
 }
 
 /* Estilos para o rodapé */
@@ -33,26 +33,6 @@ footer {
     height: 5vh;
 }
 
-button {
-    background-color: #F3593B; /* Cor dos botões */
-    color: white;
-    padding: 5vw 10vw;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 5vw;
-    margin-right: 10px;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-    height: 8vh;
-    width: 5vw;
-}
-
-button:hover {
-    background-color: #c1462d; /* Cor de hover dos botões */
-}
-
-/* Estilos para a lista de metadados */
 ul {
     list-style-type: none;
     padding: 0;
