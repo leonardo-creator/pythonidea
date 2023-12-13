@@ -207,7 +207,8 @@ select, input[type="text"] {
 }
 
 .text-column {
-    background-color: whitesmoke
+    background-color: whitesmoke;
+    font-size: 1.5em;
 }
 
 .itensghost{
