@@ -19,12 +19,13 @@
         <h1>Gerador de Relatório Geolocado</h1>
     </header>
 
-    <input type="file" id="imageInput" multiple style="display: none;" />
-    <label for="imageInput" id="upload-label" class="custom-button">Carregar Imagens</label>
+    <div class:"inputimage">
+        <input type="file" id="imageInput" multiple style="display: none;" />
+        <label for="imageInput" id="upload-label" class="custom-button">Carregar Imagens</label>
+    </div>
 
     <ul id="metadataList"></ul>
-    <div id="utmCoordinates"></div>
-
+    
     <!-- Botões ocultos inicialmente -->
     <button id="concluirButton" style="display: none;">WORD</button>
     <button id="generate-kml" style="display: none;">KML</button>
