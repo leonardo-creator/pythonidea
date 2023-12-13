@@ -209,3 +209,9 @@ select, input[type="text"] {
 .text-column {
     background-color: whitesmoke
 }
+
+.itensghost{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
