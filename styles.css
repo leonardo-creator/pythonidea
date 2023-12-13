@@ -102,8 +102,8 @@ select, input[type="text"] {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
-    width: 5vw;
-    height: 12vh;
+    width: 4vw;
+    height: 10vh;
 }
 
 .custom-button:hover, button:hover {
