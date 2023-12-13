@@ -183,3 +183,26 @@ select, input[type="text"] {
     display: flex;
     justify-content: center;
 }
+
+.flex-container {
+    display: flex;
+    margin: 20px;
+}
+
+.image-column, .text-column {
+    flex: 1; 
+    padding: 10px;
+}
+
+.image-column {
+   
+}
+
+.image-column img {
+    width: 100%; 
+    height: auto; 
+}
+
+.text-column {
+   
+}
