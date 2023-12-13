@@ -44,7 +44,8 @@ button {
     margin-right: 10px;
     margin-top: 10px;
     transition: background-color 0.3s;
-    height: 10vh;
+    height: 5vh;
+    width: 10vw;
 }
 
 button:hover {
