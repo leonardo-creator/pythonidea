@@ -176,3 +176,8 @@ select, input[type="text"] {
 #upload-label:focus {
     box-shadow: 0 0 0 2px #0056b3; 
 }
+
+
+.custom-button-upload{
+    width: 50%;
+}
