@@ -127,3 +127,27 @@ select, input[type="text"] {
 .json-button {
     background-image: url('json-file.png');
 }
+
+#upload-label {
+    background-color: #007bff; 
+    color: white; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background-color 0.3s, color 0.3s; 
+    display: inline-block; 
+    text-align: center; 
+    margin: 10px 0; 
+}
+
+
+#upload-label:hover {
+    background-color: #0056b3; 
+    color: #fff; 
+}
+
+
+#upload-label:focus {
+    box-shadow: 0 0 0 2px #0056b3; 
+}
