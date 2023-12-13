@@ -116,7 +116,7 @@ select, input[type="text"] {
 
 
 #metadataList {
-    max-height: 60vh;
+    max-height: 80vh;
     overflow-y: auto; 
 }
 
