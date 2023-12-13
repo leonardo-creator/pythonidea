@@ -108,6 +108,7 @@ select, input[type="text"] {
 
 #botao{
     display: flex;
+    justify-content: space-around;
 }
 
 button {
