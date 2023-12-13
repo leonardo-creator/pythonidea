@@ -49,6 +49,7 @@ footer {
     text-align: center; /* Alinhamento do texto */
     width: 100%;
     height: 5vh;
+    margin-top: 1vh;
 }
 
 ul {
