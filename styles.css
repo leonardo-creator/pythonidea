@@ -196,7 +196,7 @@ select, input[type="text"] {
 }
 
 .image-column {
-   height: 50vh;
+   height: 80vh;
    display: flex;
    justify-content: center;
    align-items: center;
