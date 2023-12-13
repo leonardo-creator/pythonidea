@@ -164,6 +164,7 @@ select, input[type="text"] {
     display: inline-block; 
     text-align: center; 
     margin: 10px 0; 
+    width: 50%;
 }
 
 
