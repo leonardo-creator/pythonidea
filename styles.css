@@ -102,7 +102,7 @@ select, input[type="text"] {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
-    width: 4vw;
+    width: 6vw;
     height: 10vh;
 }
 
