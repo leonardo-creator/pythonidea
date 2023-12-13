@@ -45,7 +45,7 @@ button {
     margin-top: 10px;
     transition: background-color 0.3s;
     height: 5vh;
-    width: 10vw;
+    width: 5vw;
 }
 
 button:hover {
