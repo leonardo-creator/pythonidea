@@ -112,9 +112,6 @@ select, input[type="text"] {
     width: 100vw;
 }
 
-button {
-    display: inline-block; /* Ajuste para alinhar corretamente os botões */
-}
 
 #metadataList {
     max-height: 75vh;
