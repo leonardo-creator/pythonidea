@@ -15,8 +15,8 @@ header {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    background-color: #007bff; 
-    color: white;
+    background-color: whitesmoke; 
+    color: #110043;
     padding: 20px;
 }
 
@@ -31,10 +31,12 @@ header {
 
 .top-left, .bottom-left {
     order: 0; /* Primeiro na ordem */
+    height: 4vh;
 }
 
 .top-right, .bottom-right {
     order: 2; /* Último na ordem */
+    height: 4vh
 }
 
 header h1 {
