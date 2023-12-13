@@ -449,6 +449,7 @@ function downloadExcel() {
 
         // Ocultar o botão de upload
         document.getElementById('upload-label').style.display = 'none';
+        document.getElementById('introducao').style.display = 'none';
     }
 });
 
