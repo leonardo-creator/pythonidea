@@ -75,7 +75,7 @@ select, input[type="text"] {
 
 .custom-button, button {
     background-color: white; 
-    color: white;
+    color: #110043;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
