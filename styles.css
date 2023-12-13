@@ -220,18 +220,28 @@ select, input[type="text"] {
 
 .metadata-item select {
     font-size: 1em;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: white;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    padding: 8px 5px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
     cursor: pointer;
+    width: 100%; /* Ajustar para a largura desejada */
+    box-sizing: border-box; /* Para incluir o padding no cálculo da largura */
 }
 
+.metadata-item select:focus {
+    border-bottom: 2px solid #007bff; /* Cor quando o select está focado */
+    outline: none; /* Remover o contorno padrão */
+}
 
+/* Estilo para as opções do select */
 .metadata-item select option {
-    padding: 8px;
+    padding: 8px 5px;
+    background-color: white;
 }
+
 
 .metadata-item input[type="text"] {
     font-size: 1em;
