@@ -69,7 +69,7 @@ ul {
 }
 
 .metadata-item img {
-    width: 30vw; 
+    width: 25vw; 
     margin-right: 20px;
     border-radius: 5px;
     object-fit: cover; /* Garante que a imagem se ajuste ao espaço */
