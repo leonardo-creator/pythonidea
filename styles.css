@@ -131,17 +131,17 @@ select, input[type="text"] {
 
 /* Definições de imagens específicas para cada botão */
 .word-button {
-    background-image: url('word.jpg');
+    background-image: url('excel.png');
 }
 
 .kml-button {
-    background-image: url('earth.jpg');
+    background-image: url('google-earth.png');
 }
 
 .excel-button {
-    background-image: url('excel.jpg');
+    background-image: url('excel.png');
 }
 
 .json-button {
-    background-image: url('json.jpg');
+    background-image: url('json-file.png');
 }
