@@ -5,6 +5,7 @@ body {
     margin: 0;
     background-color: #110043; /* Cor de fundo escura */
     color: #110043; /* Cor de texto clara */
+    flex-direction: column;
 }
 
 /* Estilos para o cabeçalho */
