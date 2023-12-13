@@ -1,4 +1,3 @@
-/* Estilos gerais para a página */
 body {
     display: flex;
     font-family: Arial, sans-serif;
@@ -6,6 +5,11 @@ body {
     background-color: #110043; /* Cor de fundo escura */
     color: #110043; /* Cor de texto clara */
     flex-direction: column;
+
+    background-image: url('engrena.png'); 
+    background-size: 30vh;
+    background-position: center; 
+    background-repeat: no-repeat; 
 }
 
 
@@ -31,12 +35,12 @@ header {
 
 .top-left, .bottom-left {
     order: 0; /* Primeiro na ordem */
-    height: 4vh;
+    height: 6vh;
 }
 
 .top-right, .bottom-right {
     order: 2; /* Último na ordem */
-    height: 4vh
+    height: 6vh
 }
 
 header h1 {
