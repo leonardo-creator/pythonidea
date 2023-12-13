@@ -47,8 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // Criar e configurar o select para o status
         const statusSelect = document.createElement("select");
         statusSelect.id = `status-${metadata.index}`;
-        statusSelect.style.fontSize = '2em'; // Definindo o tamanho da fonte
-        statusSelect.style.marginLeft = '10px'; // Definindo uma pequena margem à esquerda
         const statusOptions = ["Pendente", "Concluido", "Atrasado"];
         statusOptions.forEach(status => {
             const option = document.createElement("option");
@@ -69,8 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
         descriptionInput.id = `description-${metadata.index}`;
         descriptionInput.placeholder = "Descrição";
         descriptionInput.value = metadata.description || "";
-        descriptionInput.style.fontSize = '2em'; // Definindo o tamanho da fonte
-        descriptionInput.style.marginLeft = '10px'; // Definindo uma pequena margem à esquerda
     
         // Adicionar ouvinte de evento ao input
         descriptionInput.addEventListener("change", function () {
@@ -78,12 +74,23 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     
         // Adicionar os elementos ao metadataInfo
-        // ... [resto do código para adicionar outros elementos ao metadataInfo]
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode(`${metadata.name}:`)));
+        metadataInfo.appendChild(document.createElement("br"));
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Status:")));
+        metadataInfo.appendChild(statusSelect);
+        metadataInfo.appendChild(document.createElement("br"));
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Descrição:")));
+        metadataInfo.appendChild(descriptionInput);
+        metadataInfo.appendChild(document.createElement("br"));
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Data/hora:")));
+        metadataInfo.appendChild(document.createTextNode(`${metadata["date"]}`));
+        metadataInfo.appendChild(document.createElement("br"));
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Coordenadas UTM:")));
+        metadataInfo.appendChild(document.createTextNode(`${calculateUTM(metadata.Latitude, metadata.Longitude)}`));
     
         listItem.appendChild(metadataInfo);
         metadataList.appendChild(listItem);
     }
-    
     
 
     function readImageMetadata(file, index) {
