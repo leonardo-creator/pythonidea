@@ -103,7 +103,7 @@ select, input[type="text"] {
     font-size: 16px;
     transition: background-color 0.3s;
     width: 5vw;
-    height: 7vh;
+    height: 9vh;
 }
 
 .custom-button:hover, button:hover {
@@ -227,16 +227,16 @@ select, input[type="text"] {
     border-radius: 0;
     box-shadow: none;
     cursor: pointer;
-    width: 100%; /* Ajustar para a largura desejada */
-    box-sizing: border-box; /* Para incluir o padding no cálculo da largura */
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .metadata-item select:focus {
-    border-bottom: 2px solid #007bff; /* Cor quando o select está focado */
-    outline: none; /* Remover o contorno padrão */
+    border-bottom: 2px solid #007bff; 
+    outline: none;
 }
 
-/* Estilo para as opções do select */
+
 .metadata-item select option {
     padding: 8px 5px;
     background-color: white;
@@ -248,11 +248,11 @@ select, input[type="text"] {
     padding: 8px;
     border: none;
     border-bottom: 2px solid #ccc;
-    width: calc(100% - 16px); /* Ajustar para a largura desejada */
-    box-sizing: border-box; /* Para incluir o padding no cálculo da largura */
+    width: calc(100% - 16px); 
+    box-sizing: border-box; 
 }
 
 .metadata-item input[type="text"]:focus {
-    border-bottom: 2px solid #007bff; /* Cor quando o input está focado */
-    outline: none; /* Remover o contorno padrão */
+    border-bottom: 2px solid #007bff; 
+    outline: none; 
 }
