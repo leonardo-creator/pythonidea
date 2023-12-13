@@ -105,6 +105,10 @@ select, input[type="text"] {
     background-color: #0056b3; /* Cor de hover azul mais escuro */
 }
 
+#botao{
+    display: flex;
+}
+
 button {
     display: inline-block; /* Ajuste para alinhar corretamente os botões */
 }
