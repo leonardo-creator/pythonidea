@@ -44,7 +44,7 @@ button {
     margin-right: 10px;
     margin-top: 10px;
     transition: background-color 0.3s;
-    height: 5vh;
+    height: 8vh;
     width: 5vw;
 }
 
@@ -94,7 +94,7 @@ select, input[type="text"] {
 
 
 .custom-button, button {
-    background-color: #007bff; /* Cor de fundo azul */
+    background-color: white; 
     color: white;
     padding: 10px 15px;
     border: none;
@@ -131,7 +131,7 @@ select, input[type="text"] {
 
 /* Definições de imagens específicas para cada botão */
 .word-button {
-    background-image: url('excel.png');
+    background-image: url('word.png');
 }
 
 .kml-button {
