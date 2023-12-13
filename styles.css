@@ -216,3 +216,33 @@ select, input[type="text"] {
     justify-content: space-evenly;
     height: 80vh;
 }
+
+
+.metadata-item select {
+    font-size: 1em;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+
+.metadata-item select option {
+    padding: 8px;
+}
+
+.metadata-item input[type="text"] {
+    font-size: 1em;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    width: calc(100% - 16px); /* Ajustar para a largura desejada */
+    box-sizing: border-box; /* Para incluir o padding no cálculo da largura */
+}
+
+.metadata-item input[type="text"]:focus {
+    border-bottom: 2px solid #007bff; /* Cor quando o input está focado */
+    outline: none; /* Remover o contorno padrão */
+}
