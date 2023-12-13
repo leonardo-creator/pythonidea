@@ -176,6 +176,7 @@ select, input[type="text"] {
 
 .custom-button-upload{
     width: 50%;
+    margin: 1vw;
 }
 
 .itemup{
