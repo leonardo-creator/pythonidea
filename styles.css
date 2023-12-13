@@ -203,8 +203,8 @@ select, input[type="text"] {
 }
 
 .image-column img {
-    width: 60%; 
-    height: auto; 
+    width: 80%; 
+    height: 80%; 
 }
 
 .text-column {
