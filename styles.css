@@ -192,7 +192,6 @@ select, input[type="text"] {
 .image-column, .text-column {
     flex: 1; 
     padding: 10px;
-    ;
 }
 
 .image-column {
@@ -212,12 +211,12 @@ select, input[type="text"] {
 
 .text-column h2{
     background-color: whitesmoke;
-    font-size: 2em;
+    font-size: 1.2em;
 }
 
 .text-column p{
     background-color: whitesmoke;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 .itensghost{
