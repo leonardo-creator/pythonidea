@@ -55,7 +55,7 @@ footer {
 ul {
     list-style-type: none;
     padding: 0;
-    margin: 1vw;
+    margin: 1vw;www
 }
 
 .metadata-item img {
@@ -210,6 +210,14 @@ select, input[type="text"] {
     height: 80vh;
 }
 
+.metadata-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
 
 .metadata-item select {
     font-size: 1em;
