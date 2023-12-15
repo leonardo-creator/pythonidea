@@ -55,7 +55,7 @@ footer {
 ul {
     list-style-type: none;
     padding: 0;
-    margin: 1vw;www
+    margin: 1vw;
 }
 
 .metadata-item img {
@@ -68,7 +68,7 @@ ul {
 .metadata-info {
     flex-grow: 1;
     font-size: 1.8vw; 
-    justify-content: space-around;
+    align-items: normal;
     height: 100%;
 }
 
