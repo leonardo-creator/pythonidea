@@ -40,7 +40,7 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 2.5vh; /* Tamanho da fonte ajustado para a altura da viewport */
+    font-size: 2.0vw; /* Tamanho da fonte ajustado para a altura da viewport */
 }
 
 footer {
