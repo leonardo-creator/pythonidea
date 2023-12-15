@@ -176,45 +176,48 @@ document.addEventListener("DOMContentLoaded", function () {
         concluir();
     });
 
-    function resizeImage(src, maxWidth, maxHeight) {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.onload = () => {
-                // Criar um canvas
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-    
-                // Calcular as novas dimensões da imagem mantendo a proporção
-                let width = img.width;
-                let height = img.height;
-    
-                if (width > height) {
-                    if (width > maxWidth) {
-                        height *= maxWidth / width;
-                        width = maxWidth;
-                    }
-                } else {
-                    if (height > maxHeight) {
-                        width *= maxHeight / height;
-                        height = maxHeight;
-                    }
+function resizeImage(src, maxWidth, maxHeight) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+            // Criar um canvas
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Aplicar suavização de alta qualidade
+            ctx.imageSmoothingQuality = 'high';
+
+            // Calcular as novas dimensões da imagem mantendo a proporção
+            let width = img.width;
+            let height = img.height;
+
+            if (width > height) {
+                if (width > maxWidth) {
+                    height *= maxWidth / width;
+                    width = maxWidth;
                 }
-    
-                // Definir as dimensões do canvas
-                canvas.width = width;
-                canvas.height = height;
-    
-                // Desenhar a imagem no canvas
-                ctx.drawImage(img, 0, 0, width, height);
-    
-                // Converter o canvas para uma URL de dados
-                resolve(canvas.toDataURL());
-            };
-            img.onerror = reject;
-            img.src = src;
-        });
-    }
-    
+            } else {
+                if (height > maxHeight) {
+                    width *= maxHeight / height;
+                    height = maxHeight;
+                }
+            }
+
+            // Definir as dimensões do canvas
+            canvas.width = width;
+            canvas.height = height;
+
+            // Desenhar a imagem no canvas
+            ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height);
+
+            // Converter o canvas para uma URL de dados
+            resolve(canvas.toDataURL());
+        };
+        img.onerror = reject;
+        img.src = src;
+    });
+}
+
 
 function concluir() {
     // Ordenar o imageMetadataList
