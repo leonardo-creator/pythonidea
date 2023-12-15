@@ -179,40 +179,43 @@ document.addEventListener("DOMContentLoaded", function () {
 const pica = window.pica();
 
 function resizeImage(src, maxWidth, maxHeight) {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            let width = img.width;
-            let height = img.height;
-
-            // Calcular as novas dimensões mantendo a proporção
-            if (width > height) {
-                if (width > maxWidth) {
-                    height = Math.round(height * (maxWidth / width));
-                    width = maxWidth;
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => {
+                // Criar um canvas
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+    
+                // Calcular as novas dimensões da imagem mantendo a proporção
+                let width = img.width;
+                let height = img.height;
+    
+                if (width > height) {
+                    if (width > maxWidth) {
+                        height *= maxWidth / width;
+                        width = maxWidth;
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        width *= maxHeight / height;
+                        height = maxHeight;
+                    }
                 }
-            } else {
-                if (height > maxHeight) {
-                    width = Math.round(width * (maxHeight / height));
-                    height = maxHeight;
-                }
-            }
-
-            canvas.width = width;
-            canvas.height = height;
-
-            // Redimensionar a imagem com pica
-            pica.resize(img, canvas)
-                .then(result => pica.toBlob(result, 'image/jpeg', 0.90))
-                .then(blob => resolve(URL.createObjectURL(blob)))
-                .catch(reject);
-        };
-        img.onerror = reject;
-        img.src = src;
-    });
-}
-
+    
+                // Definir as dimensões do canvas
+                canvas.width = width;
+                canvas.height = height;
+    
+                // Desenhar a imagem no canvas
+                ctx.drawImage(img, 0, 0, width, height);
+    
+                // Converter o canvas para uma URL de dados
+                resolve(canvas.toDataURL());
+            };
+            img.onerror = reject;
+            img.src = src;
+        });
+    }
 
 
 function concluir() {
