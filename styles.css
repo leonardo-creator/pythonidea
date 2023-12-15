@@ -67,7 +67,7 @@ ul {
 
 .metadata-info {
     flex-grow: 1;
-    font-size: 1.8vh; 
+    font-size: 1.8vw; 
     justify-content: space-around;
     height: 100%;
 }
