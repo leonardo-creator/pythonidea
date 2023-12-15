@@ -211,6 +211,7 @@ select, input[type="text"] {
 }
 
 .metadata-item {
+    color: #110043;
     background-color: white;
     border: 1px solid #ddd;
     padding: 10px;
