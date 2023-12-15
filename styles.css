@@ -67,8 +67,7 @@ ul {
 
 .metadata-info {
     flex-grow: 1;
-    font-size: 1.8vh; /* Tamanho da fonte ajustado para a altura da viewport */
-    flex-direction: column;
+    font-size: 1.8vh; 
     justify-content: space-around;
     height: 100%;
 }
