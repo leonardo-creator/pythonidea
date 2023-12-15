@@ -180,43 +180,39 @@ function resizeImage(src, maxWidth, maxHeight) {
     return new Promise((resolve, reject) => {
         const img = new Image();
         img.onload = () => {
-            // Criar um canvas
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
+            let canvas = document.createElement('canvas');
+            let ctx = canvas.getContext('2d');
 
-            // Aplicar suavização de alta qualidade
-            ctx.imageSmoothingQuality = 'high';
-
-            // Calcular as novas dimensões da imagem mantendo a proporção
             let width = img.width;
             let height = img.height;
 
-            if (width > height) {
-                if (width > maxWidth) {
-                    height *= maxWidth / width;
-                    width = maxWidth;
-                }
-            } else {
-                if (height > maxHeight) {
-                    width *= maxHeight / height;
-                    height = maxHeight;
-                }
+            // Reduzir a imagem em 50% várias vezes até atingir o tamanho desejado
+            while (width > 2 * maxWidth || height > 2 * maxHeight) {
+                width = Math.round(width / 2);
+                height = Math.round(height / 2);
             }
 
-            // Definir as dimensões do canvas
             canvas.width = width;
             canvas.height = height;
+            ctx.drawImage(img, 0, 0, width, height);
 
-            // Desenhar a imagem no canvas
-            ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height);
-
-            // Converter o canvas para uma URL de dados
-            resolve(canvas.toDataURL());
+            // Redimensionamento final para o tamanho desejado
+            if (width > maxWidth || height > maxHeight) {
+                let canvas2 = document.createElement('canvas');
+                let ctx2 = canvas2.getContext('2d');
+                canvas2.width = maxWidth;
+                canvas2.height = maxHeight;
+                ctx2.drawImage(canvas, 0, 0, maxWidth, maxHeight);
+                resolve(canvas2.toDataURL());
+            } else {
+                resolve(canvas.toDataURL());
+            }
         };
         img.onerror = reject;
         img.src = src;
     });
 }
+
 
 
 function concluir() {
