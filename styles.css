@@ -194,12 +194,12 @@ select, input[type="text"] {
 .text-column h2{
     background-color: whitesmoke;
     color:#110043;
-    font-size: 1vh;
+    font-size: 1vw;
 }
 
 .text-column p{
     background-color: whitesmoke;
-    font-size: 0.8vh;
+    font-size: 0.8vw;
     color:#110043;
 }
 
