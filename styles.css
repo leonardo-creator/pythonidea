@@ -16,7 +16,7 @@ header {
     text-align: center;
     background-color: whitesmoke;
     color: #110043;
-    padding: 2vh; /* Padding baseado na altura da viewport */
+    padding: 2vh; 
 }
 
 .corner {
@@ -24,8 +24,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10vw; /* Largura baseada na largura da viewport */
-    height: 10vh; /* Altura baseada na altura da viewport */
+    width: 10vw; 
+    height: 10vh;
 }
 
 .top-left, .bottom-left {
@@ -193,12 +193,14 @@ select, input[type="text"] {
 
 .text-column h2{
     background-color: whitesmoke;
-    font-size: 1em;
+    color:#110043;
+    font-size: 1vh;
 }
 
 .text-column p{
     background-color: whitesmoke;
-    font-size: 0.8em;
+    font-size: 0.8vh;
+    color:#110043;
 }
 
 .itensghost{
