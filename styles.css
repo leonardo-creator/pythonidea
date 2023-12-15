@@ -217,9 +217,8 @@ select, input[type="text"] {
     padding: 10px;
     margin-bottom: 10px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.5vw;
+    align-items:flex-start;
+    font-size: 2vw;
 }
 
 .metadata-item select {
