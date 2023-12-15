@@ -176,37 +176,37 @@ document.addEventListener("DOMContentLoaded", function () {
         concluir();
     });
 
+const pica = window.pica();
+
 function resizeImage(src, maxWidth, maxHeight) {
     return new Promise((resolve, reject) => {
         const img = new Image();
         img.onload = () => {
-            let canvas = document.createElement('canvas');
-            let ctx = canvas.getContext('2d');
-
+            const canvas = document.createElement('canvas');
             let width = img.width;
             let height = img.height;
 
-            // Reduzir a imagem em 50% várias vezes até atingir o tamanho desejado
-            while (width > 2 * maxWidth || height > 2 * maxHeight) {
-                width = Math.round(width / 2);
-                height = Math.round(height / 2);
+            // Calcular as novas dimensões mantendo a proporção
+            if (width > height) {
+                if (width > maxWidth) {
+                    height = Math.round(height * (maxWidth / width));
+                    width = maxWidth;
+                }
+            } else {
+                if (height > maxHeight) {
+                    width = Math.round(width * (maxHeight / height));
+                    height = maxHeight;
+                }
             }
 
             canvas.width = width;
             canvas.height = height;
-            ctx.drawImage(img, 0, 0, width, height);
 
-            // Redimensionamento final para o tamanho desejado
-            if (width > maxWidth || height > maxHeight) {
-                let canvas2 = document.createElement('canvas');
-                let ctx2 = canvas2.getContext('2d');
-                canvas2.width = maxWidth;
-                canvas2.height = maxHeight;
-                ctx2.drawImage(canvas, 0, 0, maxWidth, maxHeight);
-                resolve(canvas2.toDataURL());
-            } else {
-                resolve(canvas.toDataURL());
-            }
+            // Redimensionar a imagem com pica
+            pica.resize(img, canvas)
+                .then(result => pica.toBlob(result, 'image/jpeg', 0.90))
+                .then(blob => resolve(URL.createObjectURL(blob)))
+                .catch(reject);
         };
         img.onerror = reject;
         img.src = src;
