@@ -68,6 +68,8 @@ ul {
 .metadata-info {
     flex-grow: 1;
     font-size: 1.8vh; /* Tamanho da fonte ajustado para a altura da viewport */
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 select, input[type="text"] {
