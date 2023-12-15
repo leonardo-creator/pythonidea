@@ -1,3 +1,8 @@
+@media only screen and (max-width: 480px) {
+    body {
+        font-size: 4vh; /* Aumentar o tamanho da fonte para dispositivos móveis */
+    }
+    
 body {
     display: flex;
     font-family: Arial, sans-serif;
