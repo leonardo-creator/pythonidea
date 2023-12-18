@@ -6,14 +6,20 @@ document.addEventListener("DOMContentLoaded", function () {
     let imageMetadataList = [];
 
     imageInput.addEventListener("change", async function (event) {
-        const files = event.target.files;
+        const files = this.files;
 
         if (files.length > 0) {
-            clearMetadataList();
-            imageMetadataList = [];
-
             try {
-                await Promise.all(Array.from(files).map((file, index) => readImageMetadata(file, index)));
+                // Armazenar o índice atual para começar a adicionar novas imagens
+                const startIndex = imageMetadataList.length;
+
+                // Ler os metadados das novas imagens e adicioná-los à lista existente
+                const newMetadata = await Promise.all(Array.from(files).map((file, index) => 
+                    readImageMetadata(file, startIndex + index)));
+
+                imageMetadataList = [...imageMetadataList, ...newMetadata];
+
+                // Atualizar a exibição para incluir as novas imagens
                 displayMetadataList();
             } catch (error) {
                 console.error(error);
