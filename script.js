@@ -35,10 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function displayMetadataList() {
+        clearMetadataList();
         imageMetadataList.forEach(metadata => {
             displayMetadata(metadata);
         });
-    }
 
     function displayMetadata(metadata) {
         const listItem = document.createElement("li");
