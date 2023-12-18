@@ -123,6 +123,17 @@ document.addEventListener("DOMContentLoaded", function () {
         metadataInfo.appendChild(predictionDateInput);
         metadataInfo.appendChild(document.createElement("br"));
 
+        
+        // Botão para remover a imagem
+        const removeButton = document.createElement("button");
+        removeButton.innerText = "Remover";
+        removeButton.className = "remove-button";
+        removeButton.onclick = function() {
+            removeImage(metadata.index);
+        };
+
+    metadataInfo.appendChild(removeButton);
+
         listItem.appendChild(metadataInfo);
         metadataList.appendChild(listItem);
     }
@@ -572,6 +583,19 @@ function downloadExcel() {
             }
         }
         return currentDate;
+    }
+    
+    function removeImage(index) {
+        // Filtrar a lista para remover o item com o índice especificado
+        imageMetadataList = imageMetadataList.filter(metadata => metadata.index !== index);
+    
+        // Atualizar índices dos itens restantes
+        imageMetadataList.forEach((metadata, newIndex) => {
+            metadata.index = newIndex;
+        });
+    
+        // Reexibir a lista atualizada
+        displayMetadataList();
     }
     
 

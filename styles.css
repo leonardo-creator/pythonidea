@@ -302,3 +302,13 @@ select, input[type="text"] {
 #jsonInput-label:focus {
     box-shadow: 0 0 0 2px #218838; /* Foco com cor de destaque */
 }
+
+.remove-button {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
