@@ -514,8 +514,6 @@ function downloadExcel() {
                 document.getElementById('upload-label').style.display = 'none';
                 document.getElementById('introducao').style.display = 'none';
 
-                document.getElementById('itemup').style.display = 'inline-block'
-
             } catch (error) {
                 console.error(error);
             }
@@ -536,8 +534,6 @@ function downloadExcel() {
             // Ocultar o botão de upload
             document.getElementById('upload-label').style.display = 'none';
             document.getElementById('introducao').style.display = 'none';
-
-            document.getElementById('itemup').style.display = 'inline-block'
 
                 const reader = new FileReader();
             reader.onload = function(e) {
