@@ -138,16 +138,20 @@ document.addEventListener("DOMContentLoaded", function () {
     function readImageMetadata(file, index) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
-
+    
             reader.onload = function (e) {
                 const img = new Image();
                 img.src = e.target.result;
-
+    
                 img.onload = function () {
                     EXIF.getData(img, function () {
                         const lat = EXIF.getTag(this, "GPSLatitude");
                         const lon = EXIF.getTag(this, "GPSLongitude");
-
+    
+                        // Calcular a data de previsão padrão para 3 dias úteis a partir de hoje
+                        const defaultPredictionDate = addBusinessDays(new Date(), 3);
+                        const predictionDate = defaultPredictionDate.toISOString().split('T')[0];
+    
                         const metadata = {
                             index: index,
                             name: file.name,
@@ -162,25 +166,26 @@ document.addEventListener("DOMContentLoaded", function () {
                                 hour: '2-digit', 
                                 minute: '2-digit', 
                                 second: '2-digit'
-                            }),                            
+                            }),
                             Latitude: lat ? convertDMSToDD(lat) : "N/A",
                             Longitude: lon ? convertDMSToDD(lon) : "N/A",
                             thumbnail: e.target.result,
+                            predictionDate: predictionDate // Adicionando a data de previsão
                         };
-
-                        imageMetadataList[index] = metadata;
-                        resolve();
+    
+                        resolve(metadata);
                     });
                 };
             };
-
+    
             reader.onerror = function (error) {
                 reject(error);
             };
-
+    
             reader.readAsDataURL(file);
         });
     }
+    
 
     function convertDMSToDD(coord) {
         const degrees = coord[0];
@@ -482,19 +487,37 @@ function downloadExcel() {
         URL.revokeObjectURL(url);
     }
 
-    document.getElementById('imageInput').addEventListener('change', function() {
-    if (this.files.length > 0) {
-        // Mostrar os botões
-        document.getElementById('concluirButton').style.display = 'inline-block';
-        document.getElementById('generate-kml').style.display = 'inline-block';
-        document.getElementById('download-excel').style.display = 'inline-block';
-        document.getElementById('download-json').style.display = 'inline-block';
-
-        // Ocultar o botão de upload
-        document.getElementById('upload-label').style.display = 'none';
-        document.getElementById('introducao').style.display = 'none';
-    }
-});
+    document.getElementById('imageInput').addEventListener('change', async function() {
+        const files = this.files;
+        
+        if (files.length > 0) {
+            try {
+                // Armazenar o índice atual para começar a adicionar novas imagens
+                const startIndex = imageMetadataList.length;
+    
+                // Ler os metadados das novas imagens e adicioná-los à lista existente
+                const newMetadata = await Promise.all(Array.from(files).map((file, index) => 
+                    readImageMetadata(file, startIndex + index)));
+    
+                imageMetadataList = imageMetadataList.concat(newMetadata);
+    
+                // Atualizar a exibição para incluir as novas imagens
+                displayMetadataList();
+    
+                // Mostrar os botões
+                document.getElementById('concluirButton').style.display = 'inline-block';
+                document.getElementById('generate-kml').style.display = 'inline-block';
+                document.getElementById('download-excel').style.display = 'inline-block';
+                document.getElementById('download-json').style.display = 'inline-block';
+    
+                // Ocultar o botão de upload e a introdução
+                document.getElementById('introducao').style.display = 'none';
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    });
+    
 
     document.getElementById('jsonInput').addEventListener('change', function(event) {
         const file = event.target.files[0];
