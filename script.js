@@ -469,13 +469,13 @@ function downloadExcel() {
             // Ocultar o botão de upload
             document.getElementById('upload-label').style.display = 'none';
             document.getElementById('introducao').style.display = 'none';
-            
+
                 const reader = new FileReader();
             reader.onload = function(e) {
                 const jsonData = JSON.parse(e.target.result);
                 processUploadedJson(jsonData);
             };
-            reader.readAsText(file);
+            reader.readAsText(file); //-
         }
     });
 
