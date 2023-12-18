@@ -70,7 +70,7 @@ ul {
     font-size: 1.5vw; 
     align-items: normal;
     height: 100%;
-}
+}                       
 
 select, input[type="text"] {
     padding: 1vh;
@@ -122,12 +122,16 @@ select, input[type="text"] {
 
 
 /* Estilos adicionais para botões com imagens */
-.word-button, .kml-button, .excel-button, .json-button {
+.word-button, .kml-button, .excel-button, .json-button, .up-button {
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
     border: none;
     cursor: pointer;
+}
+
+.up-button{
+    background-image: url('upload.png');
 }
 
 .word-button {
