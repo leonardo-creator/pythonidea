@@ -74,6 +74,27 @@ document.addEventListener("DOMContentLoaded", function () {
         descriptionInput.addEventListener("change", function () {
             metadata.description = descriptionInput.value;
         });
+
+        
+        // Campo de entrada para a data de previsão
+        const predictionDateInput = document.createElement("input");
+        predictionDateInput.type = "date";
+        predictionDateInput.id = `predictionDate-${metadata.index}`;
+        predictionDateInput.style.fontSize = "1em";
+        
+        // Definir a data de previsão padrão para 3 dias úteis a partir de hoje
+        if (!metadata.predictionDate) {
+            const defaultPredictionDate = addBusinessDays(new Date(), 3);
+            metadata.predictionDate = defaultPredictionDate.toISOString().split('T')[0];
+        }
+        predictionDateInput.value = metadata.predictionDate;
+
+        // Adicionar ouvinte de evento ao input
+        predictionDateInput.addEventListener("change", function () {
+            metadata.predictionDate = predictionDateInput.value;
+            updateStatusBasedOnPredictionDate(metadata);
+        });
+
     
         // Adicionar os elementos ao metadataInfo
         metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode(`${metadata.name}:`)));
@@ -89,9 +110,27 @@ document.addEventListener("DOMContentLoaded", function () {
         metadataInfo.appendChild(document.createElement("br"));
         metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Coordenadas UTM:")));
         metadataInfo.appendChild(document.createTextNode(`${calculateUTM(metadata.Latitude, metadata.Longitude)}`));
-    
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Data de Previsão:")));
+        metadataInfo.appendChild(predictionDateInput);
+        metadataInfo.appendChild(document.createElement("br"));
+
         listItem.appendChild(metadataInfo);
         metadataList.appendChild(listItem);
+    }
+    
+    function updateStatusBasedOnPredictionDate(metadata) {
+        const currentDate = new Date();
+        const predictionDate = new Date(metadata.predictionDate);
+    
+        if (currentDate > predictionDate) {
+            metadata.status = "Atrasado";
+        } else {
+            metadata.status = "Pendente";
+        }
+    
+        // Atualize o select de status
+        const statusSelect = document.getElementById(`status-${metadata.index}`);
+        statusSelect.value = metadata.status;
     }
     
 
@@ -486,6 +525,19 @@ function downloadExcel() {
         // Utilize a função existente para exibir os dados
         displayMetadataList();
     }
+
+    function addBusinessDays(date, daysToAdd) {
+        let currentDate = new Date(date);
+        while (daysToAdd > 0) {
+            currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
+            // Pular fins de semana
+            if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
+                daysToAdd--;
+            }
+        }
+        return currentDate;
+    }
+    
 
     
 });
