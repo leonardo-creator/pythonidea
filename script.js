@@ -132,32 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
             removeImage(metadata.index);
         };
 
-        // Campo de entrada para UTM Northing
-        const utmNorthingInput = document.createElement("input");
-        utmNorthingInput.type = "text";
-        utmNorthingInput.id = `utmNorthing-${metadata.index}`;
-        utmNorthingInput.placeholder = "UTM Northing";
-        utmNorthingInput.style.fontSize = "1em";
-        utmNorthingInput.addEventListener("change", function () {
-            metadata.utmNorthing = utmNorthingInput.value;
-            updateLatLng(metadata);
-        });
-        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("UTM Northing:")));
-        metadataInfo.appendChild(utmNorthingInput);
-
-        // Campo de entrada para UTM Easting
-        const utmEastingInput = document.createElement("input");
-        utmEastingInput.type = "text";
-        utmEastingInput.id = `utmEasting-${metadata.index}`;
-        utmEastingInput.placeholder = "UTM Easting";
-        utmEastingInput.style.fontSize = "1em";
-        utmEastingInput.addEventListener("change", function () {
-            metadata.utmEasting = utmEastingInput.value;
-            updateLatLng(metadata);
-        });
-        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("UTM Easting:")));
-        metadataInfo.appendChild(utmEastingInput);
-
     metadataInfo.appendChild(removeButton);
 
         listItem.appendChild(metadataInfo);
@@ -190,17 +164,8 @@ document.addEventListener("DOMContentLoaded", function () {
     
                 img.onload = function () {
                     EXIF.getData(img, function () {
-                        let lat = EXIF.getTag(this, "GPSLatitude");
-                        let lon = EXIF.getTag(this, "GPSLongitude");
-            
-                        // Se as coordenadas GPS não estiverem disponíveis, defina como vazio
-                        if (!lat || !lon) {
-                            lat = "";
-                            lon = "";
-                        } else {
-                            lat = convertDMSToDD(lat);
-                            lon = convertDMSToDD(lon);
-                        }
+                        const lat = EXIF.getTag(this, "GPSLatitude");
+                        const lon = EXIF.getTag(this, "GPSLongitude");
     
                         // Calcular a data de previsão padrão para 3 dias úteis a partir de hoje
                         const defaultPredictionDate = addBusinessDays(new Date(), 3);
@@ -252,10 +217,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Função para calcular coordenadas UTM no Brasil
     function calculateUTM(latitude, longitude) {
-        if (!isFinite(latitude) || !isFinite(longitude)) {
-            return "N/A";
-        }
-        
         proj4.defs("WGS84", "+proj=longlat +datum=WGS84 +no_defs");
 
         // Determinar a zona UTM com base na latitude
@@ -625,43 +586,18 @@ function downloadExcel() {
     }
     
     function removeImage(index) {
-        // Filtrar a lista para remover o item com o índice especificado
-        imageMetadataList = imageMetadataList.filter(metadata => metadata.index !== index);
-    
-        // Atualizar índices dos itens restantes
-        imageMetadataList.forEach((metadata, newIndex) => {
-            metadata.index = newIndex;
-        });
-    
-        // Reexibir a lista atualizada
-        displayMetadataList();
-    }
+    // Filtrar a lista para remover o item com o índice especificado
+    imageMetadataList = imageMetadataList.filter(metadata => metadata.index !== index);
 
-    function updateLatLng(metadata) {
-        if (isFinite(metadata.utmNorthing) && isFinite(metadata.utmEasting)) {
-            const latLng = convertUTMToLatLng(metadata.utmNorthing, metadata.utmEasting);
-            metadata.Latitude = latLng.lat;
-            metadata.Longitude = latLng.lng;
-    
-            const latInput = document.getElementById(`latitude-${metadata.index}`);
-            const lngInput = document.getElementById(`longitude-${metadata.index}`);
-            if (latInput) latInput.value = latLng.lat;
-            if (lngInput) lngInput.value = latLng.lng;
-        }
-    }
-    
-    
-    function convertUTMToLatLng(utmNorthing, utmEasting) {
-        const zone = 22; // Determine a zona UTM baseada em sua aplicação
-        const hemisphere = "sul"; // Determine o hemisfério (norte ou sul)
-        const utmCoords = [utmEasting, utmNorthing];
-        const wgs84Coords = proj4(proj4.defs(`UTM${zone}${hemisphere}`), proj4.defs('WGS84'), utmCoords);
-    
-        return { lat: wgs84Coords[1], lng: wgs84Coords[0] };
-    }
-    
-    
-    
+    // Atualizar índices dos itens restantes
+    imageMetadataList.forEach((metadata, newIndex) => {
+        metadata.index = newIndex;
+    });
+
+    // Reexibir a lista atualizada
+    displayMetadataList();
+}
+
 
     
 });
