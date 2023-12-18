@@ -275,3 +275,26 @@ select, input[type="text"] {
     border-bottom: 2px solid #007bff; 
     outline: none; 
 }
+
+#jsonInput-label {
+    background-color: #28a745; /* Cor de fundo diferente para o botão JSON */
+    color: white; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background-color 0.3s, color 0.3s; 
+    display: inline-block; 
+    text-align: center; 
+    margin: 10px 0; 
+    width: 50%;
+}
+
+#jsonInput-label:hover {
+    background-color: #218838; /* Escurecer ligeiramente ao passar o mouse */
+    color: #fff; 
+}
+
+#jsonInput-label:focus {
+    box-shadow: 0 0 0 2px #218838; /* Foco com cor de destaque */
+}
