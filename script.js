@@ -132,31 +132,31 @@ document.addEventListener("DOMContentLoaded", function () {
             removeImage(metadata.index);
         };
 
-            // Campo de entrada para Latitude
-    const latitudeInput = document.createElement("input");
-    latitudeInput.type = "text";
-    latitudeInput.id = `latitude-${metadata.index}`;
-    latitudeInput.placeholder = "Latitude";
-    latitudeInput.value = metadata.Latitude || "";
-    latitudeInput.style.fontSize = "1em";
-    latitudeInput.addEventListener("change", function () {
-        metadata.Latitude = latitudeInput.value;
-    });
-    metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Latitude:")));
-    metadataInfo.appendChild(latitudeInput);
+        // Campo de entrada para UTM Northing
+        const utmNorthingInput = document.createElement("input");
+        utmNorthingInput.type = "text";
+        utmNorthingInput.id = `utmNorthing-${metadata.index}`;
+        utmNorthingInput.placeholder = "UTM Northing";
+        utmNorthingInput.style.fontSize = "1em";
+        utmNorthingInput.addEventListener("change", function () {
+            metadata.utmNorthing = utmNorthingInput.value;
+            updateLatLng(metadata);
+        });
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("UTM Northing:")));
+        metadataInfo.appendChild(utmNorthingInput);
 
-    // Campo de entrada para Longitude
-    const longitudeInput = document.createElement("input");
-    longitudeInput.type = "text";
-    longitudeInput.id = `longitude-${metadata.index}`;
-    longitudeInput.placeholder = "Longitude";
-    longitudeInput.value = metadata.Longitude || "";
-    longitudeInput.style.fontSize = "1em";
-    longitudeInput.addEventListener("change", function () {
-        metadata.Longitude = longitudeInput.value;
-    });
-    metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Longitude:")));
-    metadataInfo.appendChild(longitudeInput);
+        // Campo de entrada para UTM Easting
+        const utmEastingInput = document.createElement("input");
+        utmEastingInput.type = "text";
+        utmEastingInput.id = `utmEasting-${metadata.index}`;
+        utmEastingInput.placeholder = "UTM Easting";
+        utmEastingInput.style.fontSize = "1em";
+        utmEastingInput.addEventListener("change", function () {
+            metadata.utmEasting = utmEastingInput.value;
+            updateLatLng(metadata);
+        });
+        metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("UTM Easting:")));
+        metadataInfo.appendChild(utmEastingInput);
 
     metadataInfo.appendChild(removeButton);
 
@@ -632,6 +632,30 @@ function downloadExcel() {
         // Reexibir a lista atualizada
         displayMetadataList();
     }
+
+    function updateLatLng(metadata) {
+        // Converter UTM para latitude e longitude
+        const latLng = convertUTMToLatLng(metadata.utmNorthing, metadata.utmEasting);
+        metadata.Latitude = latLng.lat;
+        metadata.Longitude = latLng.lng;
+    
+        // Atualizar campos de latitude e longitude na interface
+        const latInput = document.getElementById(`latitude-${metadata.index}`);
+        const lngInput = document.getElementById(`longitude-${metadata.index}`);
+        if (latInput) latInput.value = latLng.lat;
+        if (lngInput) lngInput.value = latLng.lng;
+    }
+    
+    function convertUTMToLatLng(utmNorthing, utmEasting) {
+        const zone = ...; // Determine a zona UTM baseada em sua aplicação
+        const hemisphere = ...; // Determine o hemisfério (norte ou sul)
+        const utmCoords = [utmEasting, utmNorthing];
+        const wgs84Coords = proj4(proj4.defs(`UTM${zone}${hemisphere}`), proj4.defs('WGS84'), utmCoords);
+    
+        return { lat: wgs84Coords[1], lng: wgs84Coords[0] };
+    }
+    
+    
     
 
     
