@@ -517,6 +517,7 @@ function downloadExcel() {
                 document.getElementById('generate-kml').style.display = 'inline-block';
                 document.getElementById('download-excel').style.display = 'inline-block';
                 document.getElementById('download-json').style.display = 'inline-block';
+                document.getElementById('uploadButton').style.display = 'inline-block';
     
                 // Ocultar o botão de upload e a introdução
                 document.getElementById('upload-label').style.display = 'none';
@@ -538,6 +539,7 @@ function downloadExcel() {
             document.getElementById('generate-kml').style.display = 'inline-block';
             document.getElementById('download-excel').style.display = 'inline-block';
             document.getElementById('download-json').style.display = 'inline-block';
+            document.getElementById('uploadButton').style.display = 'inline-block';
 
             // Ocultar o botão de upload
             document.getElementById('upload-label').style.display = 'none';
