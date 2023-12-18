@@ -252,6 +252,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Função para calcular coordenadas UTM no Brasil
     function calculateUTM(latitude, longitude) {
+        if (!isFinite(latitude) || !isFinite(longitude)) {
+            return "N/A";
+        }
+        
         proj4.defs("WGS84", "+proj=longlat +datum=WGS84 +no_defs");
 
         // Determinar a zona UTM com base na latitude
@@ -634,17 +638,18 @@ function downloadExcel() {
     }
 
     function updateLatLng(metadata) {
-        // Converter UTM para latitude e longitude
-        const latLng = convertUTMToLatLng(metadata.utmNorthing, metadata.utmEasting);
-        metadata.Latitude = latLng.lat;
-        metadata.Longitude = latLng.lng;
+        if (isFinite(metadata.utmNorthing) && isFinite(metadata.utmEasting)) {
+            const latLng = convertUTMToLatLng(metadata.utmNorthing, metadata.utmEasting);
+            metadata.Latitude = latLng.lat;
+            metadata.Longitude = latLng.lng;
     
-        // Atualizar campos de latitude e longitude na interface
-        const latInput = document.getElementById(`latitude-${metadata.index}`);
-        const lngInput = document.getElementById(`longitude-${metadata.index}`);
-        if (latInput) latInput.value = latLng.lat;
-        if (lngInput) lngInput.value = latLng.lng;
+            const latInput = document.getElementById(`latitude-${metadata.index}`);
+            const lngInput = document.getElementById(`longitude-${metadata.index}`);
+            if (latInput) latInput.value = latLng.lat;
+            if (lngInput) lngInput.value = latLng.lng;
+        }
     }
+    
     
     function convertUTMToLatLng(utmNorthing, utmEasting) {
         const zone = 22; // Determine a zona UTM baseada em sua aplicação
