@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // Definir a data de previsão padrão para 3 dias úteis a partir de hoje
         if (!metadata.predictionDate) {
-            const defaultPredictionDate = addBusinessDays(new Date(), 3);
+            const defaultPredictionDate = addBusinessDays(new Date(), 7);
             metadata.predictionDate = defaultPredictionDate.toISOString().split('T')[0];
         }
         predictionDateInput.value = metadata.predictionDate;
