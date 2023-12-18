@@ -176,7 +176,6 @@ document.addEventListener("DOMContentLoaded", function () {
         concluir();
     });
 
-const pica = window.pica();
 
 function resizeImage(src, maxWidth, maxHeight) {
         return new Promise((resolve, reject) => {
@@ -460,7 +459,18 @@ function downloadExcel() {
     document.getElementById('jsonInput').addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {
-            const reader = new FileReader();
+
+            // Mostrar os botões
+            document.getElementById('concluirButton').style.display = 'inline-block';
+            document.getElementById('generate-kml').style.display = 'inline-block';
+            document.getElementById('download-excel').style.display = 'inline-block';
+            document.getElementById('download-json').style.display = 'inline-block';
+
+            // Ocultar o botão de upload
+            document.getElementById('upload-label').style.display = 'none';
+            document.getElementById('introducao').style.display = 'none';
+            
+                const reader = new FileReader();
             reader.onload = function(e) {
                 const jsonData = JSON.parse(e.target.result);
                 processUploadedJson(jsonData);
