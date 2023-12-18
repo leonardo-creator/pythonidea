@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
         metadataInfo.appendChild(document.createElement("br"));
         metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Coordenadas UTM:")));
         metadataInfo.appendChild(document.createTextNode(`${calculateUTM(metadata.Latitude, metadata.Longitude)}`));
+        metadataInfo.appendChild(document.createElement("br"));
         metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Data de Previsão:")));
         metadataInfo.appendChild(predictionDateInput);
         metadataInfo.appendChild(document.createElement("br"));
