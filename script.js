@@ -457,7 +457,25 @@ function downloadExcel() {
     }
 });
 
-// Restante do seu código JavaScript
+    document.getElementById('jsonInput').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const jsonData = JSON.parse(e.target.result);
+                processUploadedJson(jsonData);
+            };
+            reader.readAsText(file);
+        }
+    });
+
+    function processUploadedJson(jsonData) {
+        clearMetadataList();
+        imageMetadataList = jsonData;
+
+        // Utilize a função existente para exibir os dados
+        displayMetadataList();
+    }
 
     
 });
