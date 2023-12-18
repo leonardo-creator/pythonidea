@@ -132,6 +132,32 @@ document.addEventListener("DOMContentLoaded", function () {
             removeImage(metadata.index);
         };
 
+            // Campo de entrada para Latitude
+    const latitudeInput = document.createElement("input");
+    latitudeInput.type = "text";
+    latitudeInput.id = `latitude-${metadata.index}`;
+    latitudeInput.placeholder = "Latitude";
+    latitudeInput.value = metadata.Latitude || "";
+    latitudeInput.style.fontSize = "1em";
+    latitudeInput.addEventListener("change", function () {
+        metadata.Latitude = latitudeInput.value;
+    });
+    metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Latitude:")));
+    metadataInfo.appendChild(latitudeInput);
+
+    // Campo de entrada para Longitude
+    const longitudeInput = document.createElement("input");
+    longitudeInput.type = "text";
+    longitudeInput.id = `longitude-${metadata.index}`;
+    longitudeInput.placeholder = "Longitude";
+    longitudeInput.value = metadata.Longitude || "";
+    longitudeInput.style.fontSize = "1em";
+    longitudeInput.addEventListener("change", function () {
+        metadata.Longitude = longitudeInput.value;
+    });
+    metadataInfo.appendChild(document.createElement("strong").appendChild(document.createTextNode("Longitude:")));
+    metadataInfo.appendChild(longitudeInput);
+
     metadataInfo.appendChild(removeButton);
 
         listItem.appendChild(metadataInfo);
