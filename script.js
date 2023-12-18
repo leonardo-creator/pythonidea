@@ -647,8 +647,8 @@ function downloadExcel() {
     }
     
     function convertUTMToLatLng(utmNorthing, utmEasting) {
-        const zone = ...; // Determine a zona UTM baseada em sua aplicação
-        const hemisphere = ...; // Determine o hemisfério (norte ou sul)
+        const zone = 22; // Determine a zona UTM baseada em sua aplicação
+        const hemisphere = "sul"; // Determine o hemisfério (norte ou sul)
         const utmCoords = [utmEasting, utmNorthing];
         const wgs84Coords = proj4(proj4.defs(`UTM${zone}${hemisphere}`), proj4.defs('WGS84'), utmCoords);
     
