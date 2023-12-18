@@ -190,8 +190,17 @@ document.addEventListener("DOMContentLoaded", function () {
     
                 img.onload = function () {
                     EXIF.getData(img, function () {
-                        const lat = EXIF.getTag(this, "GPSLatitude");
-                        const lon = EXIF.getTag(this, "GPSLongitude");
+                        let lat = EXIF.getTag(this, "GPSLatitude");
+                        let lon = EXIF.getTag(this, "GPSLongitude");
+            
+                        // Se as coordenadas GPS não estiverem disponíveis, defina como vazio
+                        if (!lat || !lon) {
+                            lat = "";
+                            lon = "";
+                        } else {
+                            lat = convertDMSToDD(lat);
+                            lon = convertDMSToDD(lon);
+                        }
     
                         // Calcular a data de previsão padrão para 3 dias úteis a partir de hoje
                         const defaultPredictionDate = addBusinessDays(new Date(), 3);
