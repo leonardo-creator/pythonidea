@@ -409,7 +409,7 @@ async function createPlacemark(item) {
 
     return `
     <Placemark>
-        <name>${item.index + 1}</name>
+        <name>${item.name}</name>
         <Style>
             <IconStyle>
                 <Icon>
