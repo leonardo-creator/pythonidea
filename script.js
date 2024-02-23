@@ -323,11 +323,11 @@ function concluir() {
         const infoCell = row.insertCell();
 
         const escapedName = escapeSpecialChars(image.name);
-        const escapedDate = escapeSpecialChars(image.date);
+        const escapedDate = image.date;
         const escapedStatus = escapeSpecialChars(image.status);
         const escapedDescription = escapeSpecialChars(image.description);
-        const escapedLatitude = escapeSpecialChars(image.Latitude);
-        const escapedLongitude = escapeSpecialChars(image.Longitude);
+        const escapedLatitude = image.Latitude;
+        const escapedLongitude = image.Longitude;
         // `<strong>Título:}</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`
         
         infoCell.innerHTML = `
