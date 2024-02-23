@@ -298,6 +298,16 @@ function concluir() {
     metaCharset.setAttribute('charset', 'UTF-8');
     container.appendChild(metaCharset);
 
+    // Selecione a tag head do documento
+    const head = document.head;
+    
+    // Crie a meta tag
+    const metaCharset = document.createElement('meta');
+    metaCharset.setAttribute('charset', 'UTF-8');
+    
+    // Adicione a meta tag à cabeça
+    head.appendChild(metaCharset);
+
     // Criar uma tabela para conter as imagens e informações
     const table = document.createElement('table');
     table.style.width = '100%'; // Ajustar conforme necessário
