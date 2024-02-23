@@ -341,12 +341,8 @@ function concluir() {
 
        // Após processar todas imagens
         const content = table.outerHTML; 
-        
-        // Aplicar escape em todo o HTML 
-        const escapedHTML = escapeSpecialChars(content);
-        
         // Converter para .docx
-        const converted = htmlDocx.asBlob(escapedHTML);
+        const converted = htmlDocx.asBlob(content);
 
         // Criar um link para download
         const link = document.createElement('a');
