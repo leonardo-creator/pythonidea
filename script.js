@@ -1,3 +1,5 @@
+console.log("1")
+
 document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("imageInput");
     const metadataList = document.getElementById("metadataList");
@@ -280,7 +282,10 @@ function resizeImage(src, maxWidth, maxHeight) {
         });
     }
 
-
+function toUTF8(str) {
+    return unescape(encodeURIComponent(str));
+}
+    
 function concluir() {
     // Ordenar o imageMetadataList
     imageMetadataList.sort((a, b) => {
