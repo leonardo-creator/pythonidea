@@ -1,4 +1,4 @@
-console.log("2")
+console.log("0")
 
 document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("imageInput");
@@ -332,7 +332,7 @@ function concluir() {
 
        // Após processar todas imagens
         const content = "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>" + table.outerHTML + "</body></html>";
-
+        console.log(content)
         const converted = htmlDocx.asBlob(content);
 
 
