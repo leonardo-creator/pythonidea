@@ -333,6 +333,8 @@ function concluir() {
        // Após processar todas imagens
         const content = table.outerHTML; 
         const contentBlob = new Blob([content], {type: 'text/html; charset=utf-8'});
+        console.log(contentBlob)
+        console.log(content)
         const converted = htmlDocx.asBlob(contentBlob);
 
 
