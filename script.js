@@ -1,4 +1,4 @@
-console.log("1")
+console.log("0")
 
 document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("imageInput");
@@ -332,7 +332,9 @@ function concluir() {
 
        // Após processar todas imagens
         const content = table.outerHTML; 
-        const converted = htmlDocx.asBlob(content, { encoding: "utf8" });
+        const contentBlob = new Blob([content], {type: 'text/html; charset=utf-8'});
+        const converted = htmlDocx.asBlob(contentBlob);
+
 
         // Criar um link para download
         const link = document.createElement('a');
