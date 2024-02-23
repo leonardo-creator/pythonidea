@@ -321,28 +321,13 @@ function concluir() {
 
         // Criar a segunda célula para informações `<strong>Titulo:</strong> ${image.index + 1}<br><strong>Nome arquivo:</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`; //${calculateUTM(image.Latitude, image.Longitude)}
         const infoCell = row.insertCell();
-
-        const escapedName = escapeSpecialChars(image.name);
-        const escapedDate = image.date;
-        const escapedStatus = escapeSpecialChars(image.status);
-        const escapedDescription = escapeSpecialChars(image.description);
-        const escapedLatitude = image.Latitude;
-        const escapedLongitude = image.Longitude;
         // `<strong>Título:}</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`
-        
-        infoCell.innerHTML = `
-  <strong>Título:</strong> ${escapedName}<br>
-  <strong>Data/hora:</strong> ${escapedDate} <br> 
-  <strong>Status:</strong> ${escapedStatus}<br>
-  <strong>Detalhes:</strong> ${escapedDescription}<br>
-  <strong>Coordenadas UTM:</strong><br>
-  -${escapedLatitude}, -${escapedLongitude}`;
+        infoCell.innerHTML = `<strong>Titulo:}</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`;
     })).then(() => {
 
        // Após processar todas imagens
         const content = table.outerHTML; 
-        // Converter para .docx
-        const converted = htmlDocx.asBlob(content);
+        const converted = htmlDocx.asBlob(content, "utf8");
 
         // Criar um link para download
         const link = document.createElement('a');
