@@ -319,6 +319,20 @@ function concluir() {
     Promise.all(imageMetadataList.map(async (image) => {
         const row = table.insertRow();
 
+        //-------------
+        // Limpar o HTML
+        let cleanText = infoCell.innerText;
+        
+        // OU converter para Markdown
+        let markdownText = turndown(infoCell.innerHTML); 
+        
+        // Inserir o texto limpo ou convertido
+        infoCell.innerText = cleanText;
+        
+        // OU
+        infoCell.innerHTML = markdownText;
+        //-------------
+
         // Criar a primeira célula para imagens
         const imgCell = row.insertCell();
         const imgElement = document.createElement('img');
