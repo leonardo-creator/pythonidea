@@ -325,8 +325,14 @@ function concluir() {
     })).then(() => {
 
         // Após o processamento de todas as imagens
-        const content = table.outerHTML;
-        const converted = htmlDocx.asBlob(content, "utf-8", {foreignTextMode: true});
+        // Conteúdo HTML 
+        const content = `<p>Sobre o serviço recomposição...</p>`;
+        
+        // Escape nos caracteres
+        const escapedContent = escapeSpecialChars(content);
+        
+        // Conversão para Docx
+        const converted = htmlDocx.asBlob(escapedContent , "utf-8");
 
         // Criar um link para download
         const link = document.createElement('a');
