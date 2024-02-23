@@ -360,6 +360,11 @@ function concluir() {
 
 
     function escapeSpecialChars(str) {
+      console.log(str); // debug
+
+  if(typeof str !== 'string') {
+    return str; 
+  }  
     const replacements = {
         'Á': '&Aacute;', 'á': '&aacute;',
         'Â': '&Acirc;', 'â': '&acirc;',
