@@ -321,7 +321,22 @@ function concluir() {
 
         // Criar a segunda célula para informações `<strong>Titulo:</strong> ${image.index + 1}<br><strong>Nome arquivo:</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`; //${calculateUTM(image.Latitude, image.Longitude)}
         const infoCell = row.insertCell();
-        infoCell.innerHTML = `<strong>Título:}</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`; //${calculateUTM(image.Latitude, image.Longitude)}
+
+        const escapedName = escapeSpecialChars(image.name);
+        const escapedDate = escapeSpecialChars(image.date);
+        const escapedStatus = escapeSpecialChars(image.status);
+        const escapedDescription = escapeSpecialChars(image.description);
+        const escapedLatitude = escapeSpecialChars(image.Latitude);
+        const escapedLongitude = escapeSpecialChars(image.Longitude);
+        // `<strong>Título:}</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`
+        
+        infoCell.innerHTML = `
+  <strong>Título:</strong> ${escapedName}<br>
+  <strong>Data/hora:</strong> ${escapedDate} <br> 
+  <strong>Status:</strong> ${escapedStatus}<br>
+  <strong>Detalhes:</strong> ${escapedDescription}<br>
+  <strong>Coordenadas UTM:</strong><br>
+  -${escapedLatitude}, -${escapedLongitude}`;
     })).then(() => {
 
        // Após processar todas imagens
