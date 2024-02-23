@@ -324,15 +324,8 @@ function concluir() {
         infoCell.innerHTML = `<strong>Titulo:</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`; //${calculateUTM(image.Latitude, image.Longitude)}
     })).then(() => {
 
-        // Após o processamento de todas as imagens
-        // Conteúdo HTML 
-        const content = `<p>Sobre o serviço recomposição...</p>`;
-        
-        // Escape nos caracteres
-        const escapedContent = escapeSpecialChars(content);
-        
-        // Conversão para Docx
-        const converted = htmlDocx.asBlob(escapedContent , "utf-8");
+        const content = table.outerHTML;
+        const converted = htmlDocx.asBlob(escapeSpecialChars(content));
 
         // Criar um link para download
         const link = document.createElement('a');
