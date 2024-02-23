@@ -321,11 +321,17 @@ function concluir() {
 
         // Criar a segunda célula para informações `<strong>Titulo:</strong> ${image.index + 1}<br><strong>Nome arquivo:</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`; //${calculateUTM(image.Latitude, image.Longitude)}
         const infoCell = row.insertCell();
-        infoCell.innerHTML = `<strong>escapeSpecialChars(Título:)</strong> ${escapeSpecialChars(image.name)}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${escapeSpecialChars(image.status)}<br><strong>Detalhes:</strong> ${escapeSpecialChars(image.description)}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`; //${calculateUTM(image.Latitude, image.Longitude)}
+        infoCell.innerHTML = `<strong>${escapeSpecialChars(Título:)}</strong> ${escapeSpecialChars(image.name)}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${escapeSpecialChars(image.status)}<br><strong>Detalhes:</strong> ${escapeSpecialChars(image.description)}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`; //${calculateUTM(image.Latitude, image.Longitude)}
     })).then(() => {
 
-        const content = table.outerHTML;
-        const converted = htmlDocx.asBlob(content);
+       // Após processar todas imagens
+        const content = table.outerHTML; 
+        
+        // Aplicar escape em todo o HTML 
+        const escapedHTML = escapeSpecialChars(content);
+        
+        // Converter para .docx
+        const converted = htmlDocx.asBlob(escapedHTML);
 
         // Criar um link para download
         const link = document.createElement('a');
