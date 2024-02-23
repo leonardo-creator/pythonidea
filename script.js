@@ -322,12 +322,12 @@ function concluir() {
         // Criar a segunda célula para informações `<strong>Titulo:</strong> ${image.index + 1}<br><strong>Nome arquivo:</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`; //${calculateUTM(image.Latitude, image.Longitude)}
         const infoCell = row.insertCell();
         // `<strong>Título:}</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`
-        infoCell.innerHTML = `<strong>Titulo:}</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`;
+        infoCell.innerHTML = `<strong>Titulo:</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`;
     })).then(() => {
 
        // Após processar todas imagens
         const content = table.outerHTML; 
-        const converted = htmlDocx.asBlob(content, "utf8");
+        const converted = htmlDocx.asBlob(content, { encoding: "utf8" });
 
         // Criar um link para download
         const link = document.createElement('a');
