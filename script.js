@@ -323,17 +323,7 @@ function concluir() {
         const infoCell = row.insertCell();
         infoCell.innerHTML = `<strong>Titulo:</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`; //${calculateUTM(image.Latitude, image.Longitude)}
     })).then(() => {
-        //----------------------
-        // Limpar HTML
-          let cleanText = infoCell.innerText; 
-        
-          // OU converter para Markdown
-          let markdownText = turndown(infoCell.innerHTML);
-          
-          // Inserir texto limpo ou convertido
-          infoCell.innerText = cleanText; 
-        //--------------
-        
+
         // Após o processamento de todas as imagens
         const content = table.outerHTML;
         const converted = htmlDocx.asBlob(content);
