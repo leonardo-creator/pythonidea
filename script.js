@@ -326,7 +326,7 @@ function concluir() {
 
         // Após o processamento de todas as imagens
         const content = table.outerHTML;
-        const converted = htmlDocx.asBlob(content, "utf-8");
+        const converted = htmlDocx.asBlob(content, "utf-8", {foreignTextMode: true});
 
         // Criar um link para download
         const link = document.createElement('a');
