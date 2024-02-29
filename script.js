@@ -1,4 +1,4 @@
-console.log("2")
+console.log("3")
 
 document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("imageInput");
@@ -321,7 +321,7 @@ function concluir() {
         // Redimensionar a imagem e definir a fonte
         const resizedImageSrc = await resizeImage(image.thumbnail, 300, 200); // Exemplo de tamanho: 300x200
         imgElement.src = image.thumbnail; //resizedImageSrc
-        imgElement.style.height = '30px'; // Ajustar conforme necessário
+        imgElement.style.height = '10px'; // Ajustar conforme necessário
         imgCell.appendChild(imgElement);
 
         // Criar a segunda célula para informações `<strong>Titulo:</strong> ${image.index + 1}<br><strong>Nome arquivo:</strong> ${image.name}<br><strong>Data/hora</strong>: ${image.date} <br><strong>Status:</strong> ${image.status}<br><strong>Detalhes:</strong> ${image.description}<br><strong>Coordenadas UTM:</strong><br> -${image.Latitude}, -${image.Longitude}`; //${calculateUTM(image.Latitude, image.Longitude)}
