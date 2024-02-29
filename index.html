@@ -40,16 +40,22 @@
                 <img src="aaa.png" alt="stop">
             </div>
             <div class="text-column">
-                <h2>Principais Funcionalidades</h2>
-                <p><strong>Upload e Análise de Imagens:</strong> Ao fazer upload de suas imagens, nosso sistema lê e extrai metadados cruciais, como informações de GPS, data e hora, e muito mais. Este processo permite um entendimento profundo e imediato das propriedades essenciais de suas imagens.</p>
-                <p><strong>Edição e Gerenciamento de Metadados:</strong> Edite e gerencie informações como status do projeto (pendente, concluído, atrasado) e descrições personalizadas. Essa funcionalidade aprimora a organização e a rastreabilidade dos seus projetos, garantindo uma gestão eficiente de dados.</p>
-                <p><strong>Visualização Intuitiva:</strong> Com a apresentação das informações ao lado de miniaturas das imagens, a identificação e o acesso aos dados se tornam simples e eficazes. Essa interface amigável melhora significativamente a experiência do usuário.</p>
-                <p><strong>Exportação Versátil:</strong> Nossa plataforma permite a conversão e o download dos metadados em diversos formatos. Seja KML para mapeamento geográfico, Excel para análise de dados ou JSON para integrações de sistemas, oferecemos a flexibilidade necessária para atender às suas necessidades.</p>
                 <div style="text-align: center;">
                     <i class="fas fa-exclamation-triangle" style="font-size: 4vw; color: #ffcc00;"></i>
                     <p><strong>Dicas e Requisitos para o Uso Eficiente de Fotos com Localização:</strong> Para garantir a melhor experiência e precisão na análise de suas imagens, é crucial que as fotos contenham propriedades de localização intactas. Uma maneira eficaz de manter esses dados é zipar as fotos em seu celular antes de transferi-las para o computador. Isso preserva as informações de GPS essenciais. Importante: Evite baixar as imagens diretamente do WhatsApp ou de outros aplicativos de mensagens, pois esse processo geralmente remove os metadados de localização. Seguindo essas dicas, você poderá aproveitar ao máximo as funcionalidades de nossa plataforma, especialmente aquelas relacionadas à geolocalização e mapeamento.</p>
-                    <p><strong>Executar macro word para redimensionamento de imagens:</strong> Sub ResizeImages() <br> Dim i As Long <br> With ActiveDocument <br> For i = 1 To .InlineShapes.Count <br> With .InlineShapes(i) <br> .Height = CentimetersToPoints(5.29)
-                .LockAspectRatio = msoTrue <br> End With <br> Next i <br> End With <br> End Sub</p>
+                    <p><strong>Executar macro word para redimensionamento de imagens:</strong><br>
+                    <pre>Sub ResizeImages()
+                        Dim i As Long
+                        With ActiveDocument
+                            For i = 1 To .InlineShapes.Count
+                                With .InlineShapes(i)
+                                    .Height = CentimetersToPoints(5.29)
+                                    .LockAspectRatio = msoTrue
+                                End With
+                            Next i
+                        End With
+                    End Sub
+                    </pre>
                 </div>
             </div>
             
