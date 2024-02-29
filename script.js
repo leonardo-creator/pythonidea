@@ -320,7 +320,7 @@ function concluir() {
 
         // Redimensionar a imagem e definir a fonte
         const resizedImageSrc = await resizeImage(image.thumbnail, 300, 200); // Exemplo de tamanho: 300x200
-        imgElement.src = image.thumbnail; //resizedImageSrc
+        imgElement.src = resizedImageSrc; //
         imgElement.style.height = '10px'; // Ajustar conforme necessário
         imgCell.appendChild(imgElement);
 
@@ -403,7 +403,7 @@ async function processJsonData(jsonData) {
 }
 
 async function createPlacemark(item) {
-    const resizedImageSrc = item.thumbnail //await resizeImage(item.thumbnail, 300, 200);
+    const resizedImageSrc = await resizeImage(item.thumbnail, 300, 200);
     let iconUrl;
 
     // Selecionando a URL do ícone com base no status
