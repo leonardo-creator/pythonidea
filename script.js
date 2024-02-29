@@ -1,4 +1,4 @@
-console.log("3")
+console.log("4")
 
 document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("imageInput");
@@ -403,7 +403,7 @@ async function processJsonData(jsonData) {
 }
 
 async function createPlacemark(item) {
-    const resizedImageSrc = await resizeImage(item.thumbnail, 300, 200);
+    const resizedImageSrc = item.thumbnail //await resizeImage(item.thumbnail, 300, 200);
     let iconUrl;
 
     // Selecionando a URL do ícone com base no status
