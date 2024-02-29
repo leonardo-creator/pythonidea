@@ -495,7 +495,7 @@ function downloadExcel() {
         // Redimensionar todas as imagens
         const resizedImagesPromises = jsonData.map(async (item) => {
             if (item.thumbnail) {
-                const resizedImage = await resizeImage(item.thumbnail, 300, 200); // Use as dimensões desejadas
+                const resizedImage = item.thumbnail; //await resizeImage(item.thumbnail, 300, 200); s
                 return {...item, thumbnail: resizedImage};
             }
             return item;
