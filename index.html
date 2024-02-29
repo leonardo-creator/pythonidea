@@ -38,6 +38,10 @@
         <div class="flex-container" >
             <div class="image-column">
                 <img src="aaa.png" alt="stop">
+                <div class="text-column">
+                    <p><strong>Executar macro word para redimensionamento de imagens:</strong> Sub ResizeImages() <br> Dim i As Long <br> With ActiveDocument <br> For i = 1 To .InlineShapes.Count <br> With .InlineShapes(i) <br> .Height = CentimetersToPoints(5.29)
+                .LockAspectRatio = msoTrue <br> End With <br> Next i <br> End With <br> End Sub</p>
+                </div>
             </div>
             <div class="text-column">
                 <h2>Principais Funcionalidades</h2>
