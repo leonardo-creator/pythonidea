@@ -320,7 +320,7 @@ function concluir() {
 
         // Redimensionar a imagem e definir a fonte
         const resizedImageSrc = await resizeImage(image.thumbnail, 300, 200); // Exemplo de tamanho: 300x200
-        imgElement.src = image.thumbnail; //resizedImageSrc;
+        imgElement.src = resizedImageSrc;
         imgElement.style.height = '10px'; // Ajustar conforme necessário
         imgCell.appendChild(imgElement);
 
@@ -495,7 +495,7 @@ function downloadExcel() {
         // Redimensionar todas as imagens
         const resizedImagesPromises = jsonData.map(async (item) => {
             if (item.thumbnail) {
-                const resizedImage = item.thumbnail; //await resizeImage(item.thumbnail, 300, 200); //
+                const resizedImage = await resizeImage(item.thumbnail, 300, 200); //await resizeImage(item.thumbnail, 300, 200); //
                 return {...item, thumbnail: resizedImage};
             }
             return item;
