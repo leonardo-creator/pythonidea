@@ -320,7 +320,7 @@ function concluir() {
 
         // Redimensionar a imagem e definir a fonte
         const resizedImageSrc = await resizeImage(image.thumbnail, 300, 200); // Exemplo de tamanho: 300x200
-        imgElement.src = image.thumbnail;
+        imgElement.src = resizedImageSrc;
         imgElement.style.height = '10px'; // Ajustar conforme necessário
         imgCell.appendChild(imgElement);
 
