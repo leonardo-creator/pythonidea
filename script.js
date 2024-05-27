@@ -1,4 +1,4 @@
-console.log("4")
+console.log("1")
 
 document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("imageInput");
@@ -320,7 +320,7 @@ function concluir() {
 
         // Redimensionar a imagem e definir a fonte
         const resizedImageSrc = await resizeImage(image.thumbnail, 300, 200); // Exemplo de tamanho: 300x200
-        imgElement.src = resizedImageSrc;
+        imgElement.src = image.thumbnail;
         imgElement.style.height = '10px'; // Ajustar conforme necessário
         imgCell.appendChild(imgElement);
 
