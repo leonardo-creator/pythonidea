@@ -1,4 +1,4 @@
-console.log("1")
+console.log("12")
 
 document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("imageInput");
